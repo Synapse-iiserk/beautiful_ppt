@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFiNN - Investor Pitch Deck</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color System */
+            --bg-primary: #0a0f0a;
+            --bg-secondary: #0f1a12;
+            --bg-card: #12241a;
+            --bg-elevated: #1a2e22;
+            --accent-primary: #10b981;
+            --accent-secondary: #34d399;
+            --accent-tertiary: #00ff88;
+            --accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #00ff88 100%);
+            --success: #00ff88;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #1f3d2a;
+            --border-light: #2d5a3d;
+            
+            /* Typography Scale (Strict) */
+            --font-title: 40px;
+            --font-h1: 28px;
+            --font-h2: 20px;
+            --font-body: 14px;
+            --font-small: 12px;
+            --font-caption: 11px;
+            --font-micro: 10px;
+            
+            /* Spacing Scale */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* Layout Constants */
+            --header-height: 60px;
+            --footer-height: 44px;
+            --margin-safe: 48px;
+            --line-height: 1.5;
+        }
+
+        @page {
+            size: 1280px 720px;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Slide Container */
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--bg-primary);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        @media print {
+            body { background: var(--bg-primary); }
+            .slide { margin: 0; box-shadow: none; }
+        }
+
+        /* Background Pattern */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Header */
+        .slide-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: var(--font-h2);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Eye outline with neural network nodes --%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g1)' stroke-width='2.5'/%3E%3C!-- Iris --%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g1)' stroke-width='2'/%3E%3C!-- Pupil with chart symbol --%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g1)'/%3E%3C!-- Neural nodes around eye --%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g1)'/%3E%3C!-- Neural connections --%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g1)' stroke-width='1.5' stroke-linecap='round'/%3E%3C!-- Chart line inside pupil --%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .slide-title {
+            font-size: var(--font-body);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Body */
+        .slide-body {
+            padding: var(--space-lg) var(--margin-safe);
+            height: calc(720px - var(--header-height) - var(--footer-height));
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--footer-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-top: 1px solid var(--border);
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+        }
+
+        .page-number {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Title Slide */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .title-slide .main-logo {
+            font-size: var(--font-title);
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .title-slide .main-logo::before {
+            content: '';
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g2)' stroke-width='2.5'/%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g2)' stroke-width='2'/%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g2)'/%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g2)'/%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g2)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .title-slide .tagline {
+            font-size: var(--font-h2);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+            max-width: 700px;
+            line-height: var(--line-height);
+        }
+
+        .metrics-row {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .metric-box {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: var(--font-h1);
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: var(--space-sm);
+        }
+
+        .title-footer {
+            position: absolute;
+            bottom: var(--margin-safe);
+            font-size: var(--font-body);
+            color: var(--text-muted);
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-header h2 {
+            font-size: var(--font-h1);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--space-sm);
+            line-height: var(--line-height);
+        }
+
+        .section-header p {
+            font-size: var(--font-body);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: var(--line-height);
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: var(--space-lg);
+            transition: border-color 0.2s;
+        }
+
+        .card:hover { border-color: var(--border-light); }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: var(--font-body);
+            color: var(--accent-primary);
+        }
+
+        .card-title {
+            font-size: var(--font-body);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            line-height: var(--line-height);
+        }
+
+        .card-text {
+            font-size: var(--font-small);
+            color: var(--text-secondary);
+            line-height: var(--line-height);
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: var(--font-h1);
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: var(--space-xs);
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-body);
+            line-height: var(--line-height);
+        }
+
+        .feature-list li:last-child { border-bottom: none; }
+
+        .list-icon {
+            min-width: 28px;
+            height: 20px;
+            padding: 0 var(--space-xs);
+            background: var(--bg-elevated);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--space-sm);
+            flex-shrink: 0;
+            font-size: var(--font-micro);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .list-icon.success { color: var(--success); background: rgba(16, 185, 129, 0.1); }
+        .list-icon.error { color: var(--error); background: rgba(239, 68, 68, 0.1); }
+
+        /* Flow Diagram */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .flow-step {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+        }
+
+        .flow-number {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-small);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .flow-label {
+            font-size: var(--font-caption);
+            font-weight: 500;
+            color: var(--text-secondary);
+            line-height: var(--line-height);
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: var(--font-body);
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-small);
+        }
+
+        .data-table th {
+            background: var(--bg-elevated);
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .check-mark { color: var(--success); font-weight: 700; }
+        .cross-mark { color: var(--error); font-weight: 700; }
+        .partial { color: var(--warning); }
+
+        /* Tags */
+        .tag-group { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+
+        .tag {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 6px;
+            font-size: var(--font-caption);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Tech Badge */
+        .tech-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+
+        .tech-badge {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 4px;
+            font-size: var(--font-caption);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Architecture Layer */
+        .arch-layer {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-primary);
+            padding: var(--space-sm) var(--space-md);
+            margin-bottom: var(--space-sm);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .arch-layer-title {
+            font-size: var(--font-body);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            line-height: var(--line-height);
+        }
+
+        .arch-layer-desc {
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+            line-height: var(--line-height);
+        }
+
+        /* Pricing */
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-primary);
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, var(--bg-card) 100%);
+        }
+
+        .pricing-tier {
+            font-size: var(--font-caption);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: var(--space-xs);
+        }
+
+        .pricing-price {
+            font-size: var(--font-h1);
+            font-weight: 700;
+        }
+
+        .pricing-price span {
+            font-size: var(--font-caption);
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-top: var(--space-sm);
+        }
+
+        .pricing-features li {
+            font-size: var(--font-caption);
+            color: var(--text-secondary);
+            padding: var(--space-xs) 0;
+            border-bottom: 1px solid var(--border);
+            line-height: var(--line-height);
+        }
+
+        /* Timeline */
+        .timeline { display: flex; gap: var(--space-md); }
+
+        .timeline-item {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md);
+            border-top: 3px solid var(--accent-primary);
+        }
+
+        .timeline-phase {
+            font-size: var(--font-micro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-title {
+            font-size: var(--font-body);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            line-height: var(--line-height);
+        }
+
+        .timeline-list {
+            list-style: none;
+            font-size: var(--font-micro);
+            color: var(--text-secondary);
+        }
+
+        .timeline-list li { padding: var(--space-xs) 0; line-height: var(--line-height); }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 255, 136, 0.15) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: var(--space-lg);
+        }
+
+        .info-box h3 {
+            font-size: var(--font-h2);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            line-height: var(--line-height);
+        }
+
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+
+        .col-header {
+            font-size: var(--font-h2);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--accent-primary);
+        }
+
+        /* Accent Text */
+        .accent-text {
+            color: var(--accent-primary);
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Visual Elements */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: var(--space-md) 0;
+        }
+
+        /* Utility Classes */
+        .sub-header {
+            font-size: var(--font-body);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            line-height: var(--line-height);
+        }
+
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
+
+        /* Compact Card Variant */
+        .card-compact {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md);
+        }
+
+        .card-compact .card-icon {
+            width: 32px;
+            height: 32px;
+            font-size: var(--font-caption);
+            margin-bottom: var(--space-sm);
+        }
+
+        .card-compact .card-title {
+            font-size: var(--font-small);
+        }
+
+        .card-compact .card-text {
+            font-size: var(--font-micro);
+        }
+
+        /* Compact Flow Step Variant */
+        .flow-step-compact {
+            flex: 0 0 30%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: var(--space-sm);
+            text-align: center;
+        }
+
+        .flow-step-compact .flow-number {
+            width: 22px;
+            height: 22px;
+            font-size: var(--font-caption);
+            margin-bottom: var(--space-xs);
+        }
+
+        .flow-step-compact .flow-label {
+            font-size: var(--font-micro);
+        }
+
+        /* Fund Allocation Card */
+        .fund-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+        }
+
+        .fund-card-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-small);
+            margin-bottom: var(--space-xs);
+        }
+
+        .fund-card-desc {
+            font-size: var(--font-caption);
+            color: var(--text-secondary);
+            line-height: var(--line-height);
+        }
+
+        /* CTA Card */
+        .cta-card {
+            text-align: center;
+            padding: var(--space-lg);
+        }
+
+        .cta-card .card-icon {
+            margin: 0 auto var(--space-md);
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            font-size: var(--font-small);
+            margin-top: var(--space-md);
+        }
+
+        .info-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-md);
+            font-size: var(--font-caption);
+            text-align: center;
+            margin-top: var(--space-sm);
+            color: var(--text-secondary);
+        }
+
+        /* Text Utilities */
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+
+        /* Tag Section */
+        .tag-section {
+            margin-bottom: var(--space-lg);
+        }
+
+        .tag-section-title {
+            font-size: var(--font-body);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-secondary);
+        }
+
+        /* Architecture Layer Color Variants */
+        .arch-layer.red { border-left-color: #ef4444; }
+        .arch-layer.orange { border-left-color: #f59e0b; }
+        .arch-layer.green { border-left-color: #10b981; }
+        .arch-layer.blue { border-left-color: #3b82f6; }
+        .arch-layer.purple { border-left-color: #00ff88; }
+        .arch-layer.cyan { border-left-color: #06b6d4; }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gradient);
+            padding: var(--space-sm) var(--space-xl);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: var(--font-body);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            font-size: var(--font-body);
+            color: var(--text-secondary);
+        }
+
+        .contact-footer {
+            font-size: var(--font-small);
+            color: var(--text-muted);
+        }
+
+        /* Funding Amount */
+        .funding-amount {
+            font-size: var(--font-h1);
+            font-weight: 800;
+        }
+
+        /* Revenue List */
+        .revenue-list {
+            font-size: var(--font-small);
+            color: var(--text-secondary);
+            line-height: 2;
+            padding-left: var(--space-md);
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+    <div class="slide-body title-slide">
+        <div class="main-logo">iFiNN</div>
+        <div class="tagline">
+            Enterprise-Grade Financial Analytics &amp; Machine Learning Platform
+        </div>
+        <div class="metrics-row">
+            <div class="metric-box">
+                <div class="metric-value">130+</div>
+                <div class="metric-label">Technical Indicators</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">18+</div>
+                <div class="metric-label">Pattern Detectors</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">10+</div>
+                <div class="metric-label">ML Models</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">5+</div>
+                <div class="metric-label">Asset Classes</div>
+            </div>
+        </div>
+        <div class="title-footer">
+            iFiNN-IISERK &nbsp;|&nbsp; Seed Round &nbsp;|&nbsp; January 2026
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: Problem & Solution -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Market Opportunity</span>
+    </div>
+    <div class="slide-body">
+        <div class="two-col">
+            <div>
+                <div class="col-header">The Problem</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon error">No</span>
+                        <div><strong>Fragmented Tooling</strong><br><span class="text-muted">Traders juggle 5+ platforms for different asset classes</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">No</span>
+                        <div><strong>Black-Box ML Services</strong><br><span class="text-muted">No visibility into model architecture or parameters</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">No</span>
+                        <div><strong>No Hyperparameter Control</strong><br><span class="text-muted">Users cannot customize ML models to their strategy</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">No</span>
+                        <div><strong>Institutional Pricing</strong><br><span class="text-muted">Bloomberg Terminal: $24,000+/year</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">No</span>
+                        <div><strong>Limited Education</strong><br><span class="text-muted">No transparency on mathematical foundations</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-header">Our Solution</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon success">Yes</span>
+                        <div><strong>Unified Multi-Asset Platform</strong><br><span class="text-muted">Crypto, stocks, futures, options in one interface</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">Yes</span>
+                        <div><strong>Transparent ML Pipeline</strong><br><span class="text-muted">Full visibility into model architecture and training</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">Yes</span>
+                        <div><strong>User-Configurable Models</strong><br><span class="text-muted">Complete control over all hyperparameters</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">Yes</span>
+                        <div><strong>Accessible Pricing</strong><br><span class="text-muted">Starting at $49/month with enterprise features</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">Yes</span>
+                        <div><strong>Educational Resources</strong><br><span class="text-muted">Theory documentation for every model and indicator</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">2 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 3: Platform Capabilities -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Platform Overview</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header">
+            
+            <h2>Core Capabilities</h2>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">TA</div>
+                <div class="card-title">Technical Analysis Suite</div>
+                <div class="card-text">
+                    <strong>130+ indicators</strong> powered by pandas_ta:<br>
+                    Momentum (RSI, MACD, Stochastic), Volume (OBV, MFI, CMF), 
+                    Volatility (Bollinger, ATR), Trend (SuperTrend, VWAP, Ichimoku)
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">FT</div>
+                <div class="card-title">Fourier Transform Engine</div>
+                <div class="card-text">
+                    <strong>FFT-based cycle detection:</strong><br>
+                    Time-to-frequency domain transformation, configurable 
+                    low/high/band-pass filters, signal decomposition, spectral entropy
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">PR</div>
+                <div class="card-title">Pattern Recognition</div>
+                <div class="card-text">
+                    <strong>18+ candlestick patterns:</strong><br>
+                    Engulfing, Hammer, Doji, Morning/Evening Star, 
+                    Three Soldiers/Crows with context-aware confidence scoring
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">ML</div>
+                <div class="card-title">ML Prediction Engine</div>
+                <div class="card-text">
+                    <strong>User-configurable models:</strong><br>
+                    LSTM, GRU, Transformer architectures, XGBoost, LightGBM 
+                    with full hyperparameter control and SHAP explainability
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">SA</div>
+                <div class="card-title">Semantic News Analysis</div>
+                <div class="card-text">
+                    <strong>Real-time market sentiment:</strong><br>
+                    NLP on X/Reddit/Discord feeds to extract trends,
+                    predict price movements from social discourse patterns
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">BT</div>
+                <div class="card-title">Backtesting Engine</div>
+                <div class="card-text">
+                    <strong>Institutional-grade simulation:</strong><br>
+                    Leverage 1x-125x, slippage modeling, funding rates, 
+                    liquidation mechanics, walk-forward optimization
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">3 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 4: Multi-Market Support -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Market Coverage</span>
+    </div>
+    <div class="slide-body">
+        <div class="grid-2">
+            <div>
+                <div class="section-header mb-lg">
+                    <h2>Multi-Asset Support</h2>
+                </div>
+                
+                <div class="tag-section">
+                    <div class="tag-section-title">CRYPTOCURRENCY</div>
+                    <div class="tag-group">
+                        <span class="tag">Spot Trading</span>
+                        <span class="tag">Perpetual Futures</span>
+                        <span class="tag">Dated Futures</span>
+                        <span class="tag">Margin Trading</span>
+                        <span class="tag">DeFi Protocols</span>
+                    </div>
+                </div>
+
+                <div class="tag-section">
+                    <div class="tag-section-title">TRADITIONAL MARKETS</div>
+                    <div class="tag-group">
+                        <span class="tag">Equities</span>
+                        <span class="tag">Stock Options</span>
+                        <span class="tag">Commodities</span>
+                        <span class="tag">Forex</span>
+                        <span class="tag">Index Funds</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="tag-section-title">DERIVATIVES</div>
+                    <div class="tag-group">
+                        <span class="tag">Options (Call/Put)</span>
+                        <span class="tag">Spreads</span>
+                        <span class="tag">Volatility Products</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="info-box mb-lg">
+                    <h3>Data Integrations</h3>
+                    <div class="text-secondary" style="font-size: var(--font-small); line-height: var(--line-height);">
+                        <strong>Crypto:</strong> Binance, Bybit, Coinbase, Kraken, OKX<br>
+                        <strong>Equities:</strong> Alpha Vantage, Polygon.io, Yahoo Finance<br>
+                        <strong>Options:</strong> CBOE, Interactive Brokers<br>
+                        <strong>Alt Data:</strong> X/Reddit/Discord APIs, on-chain metrics
+                    </div>
+                </div>
+
+                <div class="grid-2" style="gap: var(--space-md);">
+                    <div class="stat-card">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">Exchange APIs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">&lt;1ms</div>
+                        <div class="stat-label">Data Latency</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10yr</div>
+                        <div class="stat-label">Historical Data</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Streaming</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">4 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 5: ML Pipeline -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Machine Learning</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-lg">
+            <h2>User-Configurable ML Pipeline</h2>
+            <p>Complete transparency and control over the entire machine learning workflow</p>
+        </div>
+
+        <div class="flow-container mb-lg">
+            <div class="flow-step">
+                <div class="flow-number">1</div>
+                <div class="flow-label">Select<br>Model</div>
+            </div>
+            <span class="flow-arrow">></span>
+            <div class="flow-step">
+                <div class="flow-number">2</div>
+                <div class="flow-label">Configure<br>Parameters</div>
+            </div>
+            <span class="flow-arrow">></span>
+            <div class="flow-step">
+                <div class="flow-number">3</div>
+                <div class="flow-label">Feature<br>Engineering</div>
+            </div>
+            <span class="flow-arrow">></span>
+            <div class="flow-step">
+                <div class="flow-number">4</div>
+                <div class="flow-label">Train and<br>Validate</div>
+            </div>
+            <span class="flow-arrow">></span>
+            <div class="flow-step">
+                <div class="flow-number">5</div>
+                <div class="flow-label">GPU<br>Execution</div>
+            </div>
+            <span class="flow-arrow">></span>
+            <div class="flow-step">
+                <div class="flow-number">6</div>
+                <div class="flow-label">Analyze<br>Results</div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <div class="sub-header mb-sm">Configurable Hyperparameters</div>
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Neural Networks (LSTM, GRU, Transformer)</div>
+                    <div class="arch-layer-desc">Learning rate, batch size, epochs, hidden layers, units, dropout, activation functions</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Gradient Boosting (XGBoost, LightGBM)</div>
+                    <div class="arch-layer-desc">Max depth, n_estimators, learning_rate, subsample, colsample, L1/L2 regularization</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Time Series Features</div>
+                    <div class="arch-layer-desc">Lag features, seasonal periods, differencing order, rolling window sizes</div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Educational Resources</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon success">01</span>
+                        <div><strong>Theory Documentation</strong><br><span class="text-muted">Mathematical foundations for each model</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">02</span>
+                        <div><strong>Architecture Diagrams</strong><br><span class="text-muted">Visual layer-by-layer neural network breakdowns</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">03</span>
+                        <div><strong>Model Explainability</strong><br><span class="text-muted">SHAP values, LIME, attention visualization</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">5 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 6: Architecture -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Technical Architecture</span>
+    </div>
+    <div class="slide-body">
+        <div class="grid-2">
+            <div>
+                <div class="section-header mb-md">
+                    <h2>System Layers</h2>
+                </div>
+                <div class="arch-layer red">
+                    <div class="arch-layer-title">Frontend Layer</div>
+                    <div class="arch-layer-desc">HTML5, JavaScript, Lightweight Charts, Plotly | Interactive dashboards</div>
+                </div>
+                <div class="arch-layer orange">
+                    <div class="arch-layer-title">API Gateway (FastAPI)</div>
+                    <div class="arch-layer-desc">REST + WebSocket | Pydantic validation | /indicators, /patterns, /predictions</div>
+                </div>
+                <div class="arch-layer green">
+                    <div class="arch-layer-title">Core Analytics Engine</div>
+                    <div class="arch-layer-desc">NumPy, pandas, pandas_ta, SciPy, Numba JIT | Indicators, Fourier, Patterns</div>
+                </div>
+                <div class="arch-layer blue">
+                    <div class="arch-layer-title">ML/AI Layer (GPU-Accelerated)</div>
+                    <div class="arch-layer-desc">TensorFlow, PyTorch, XGBoost, CUDA | LSTM, GRU, Transformer</div>
+                </div>
+                <div class="arch-layer purple">
+                    <div class="arch-layer-title">Data Streaming Layer</div>
+                    <div class="arch-layer-desc">WebSocket, aiohttp, asyncio, Redis | Binance WS, Bybit WS, Polygon</div>
+                </div>
+                <div class="arch-layer cyan">
+                    <div class="arch-layer-title">Data Storage Layer</div>
+                    <div class="arch-layer-desc">PostgreSQL, TimescaleDB, Redis, S3 | OHLCV, models, backtest results</div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Performance Optimizations</div>
+                <ul class="feature-list mb-lg">
+                    <li>
+                        <span class="list-icon success">01</span>
+                        <div><strong>Numba JIT Compilation</strong><br><span class="text-muted">10-100x speedup for indicator calculations</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">02</span>
+                        <div><strong>Vectorized Operations</strong><br><span class="text-muted">NumPy/pandas for efficient array operations</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">03</span>
+                        <div><strong>Redis Caching</strong><br><span class="text-muted">Sub-millisecond response for hot data</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">04</span>
+                        <div><strong>GPU Acceleration</strong><br><span class="text-muted">CUDA-enabled model training and inference</span></div>
+                    </li>
+                </ul>
+
+                <div class="sub-header mb-sm">Technology Stack</div>
+                <div class="tech-row">
+                    <span class="tech-badge">Python 3.11+</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">NumPy</span>
+                    <span class="tech-badge">pandas</span>
+                    <span class="tech-badge">TensorFlow</span>
+                    <span class="tech-badge">PyTorch</span>
+                    <span class="tech-badge">XGBoost</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Redis</span>
+                    <span class="tech-badge">Docker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">6 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 7: Semantic News Analysis -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Semantic News Analysis</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Real-Time Social Sentiment Intelligence</h2>
+            <p>Extract market-moving signals from X, Reddit, Discord, and news before price impact</p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <div class="sub-header mb-sm">Data Pipeline</div>
+                <div class="arch-layer red">
+                    <div class="arch-layer-title">1. Multi-Platform Ingestion</div>
+                    <div class="arch-layer-desc">X/Twitter, Reddit, Discord, Telegram, StockTwits - via licensed APIs (ToS compliant)</div>
+                </div>
+                <div class="arch-layer orange">
+                    <div class="arch-layer-title">2. Real-Time NLP Processing</div>
+                    <div class="arch-layer-desc">Sentiment scoring, entity extraction, topic clustering using transformer models</div>
+                </div>
+                <div class="arch-layer green">
+                    <div class="arch-layer-title">3. Signal Generation</div>
+                    <div class="arch-layer-desc">Aggregate sentiment trends, detect anomalies, identify emerging narratives</div>
+                </div>
+                <div class="arch-layer blue">
+                    <div class="arch-layer-title">4. Predictive Modeling</div>
+                    <div class="arch-layer-desc">Correlate sentiment shifts with price movements; generate trade signals</div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Competitive Edge</div>
+                <ul class="feature-list mb-md">
+                    <li>
+                        <span class="list-icon success">01</span>
+                        <div><strong>Faster Than News</strong><br><span class="text-muted">Social discourse precedes mainstream coverage by hours</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">02</span>
+                        <div><strong>Crowd Wisdom</strong><br><span class="text-muted">Aggregate retail sentiment from millions of discussions</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">03</span>
+                        <div><strong>Trend Prediction</strong><br><span class="text-muted">Identify meme stocks, pump patterns, and FOMO cycles early</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">04</span>
+                        <div><strong>Legal Compliance</strong><br><span class="text-muted">robots.txt adherence; future X/Reddit API licensing planned</span></div>
+                    </li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>Use Cases</h3>
+                    <div class="text-secondary" style="font-size: var(--font-small); line-height: var(--line-height);">
+                        <strong>Crypto:</strong> Track r/CryptoCurrency, CT sentiment<br>
+                        <strong>Stocks:</strong> r/wallstreetbets, FinTwit monitoring<br>
+                        <strong>Macro:</strong> Fed talk, geopolitical event detection
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">7 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 8: Backtesting -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Backtesting Engine</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Institutional-Grade Strategy Validation</h2>
+        </div>
+        
+        <div class="grid-4 mb-md">
+            <div class="card-compact">
+                <div class="card-icon">OT</div>
+                <div class="card-title">Order Types</div>
+                <div class="card-text">
+                    Market, Limit, Stop-Loss<br>
+                    Take-Profit, Trailing Stop<br>
+                    OCO Orders
+                </div>
+            </div>
+            <div class="card-compact">
+                <div class="card-icon">PM</div>
+                <div class="card-title">Position Management</div>
+                <div class="card-text">
+                    Long &amp; Short positions<br>
+                    Leverage: 1x - 125x<br>
+                    Liquidation tracking
+                </div>
+            </div>
+            <div class="card-compact">
+                <div class="card-icon">RM</div>
+                <div class="card-title">Risk Metrics</div>
+                <div class="card-text">
+                    Sharpe, Sortino ratio<br>
+                    Max drawdown, Win rate<br>
+                    Risk-adjusted returns
+                </div>
+            </div>
+            <div class="card-compact">
+                <div class="card-icon">OP</div>
+                <div class="card-title">Optimization</div>
+                <div class="card-text">
+                    Grid search tuning<br>
+                    Walk-forward validation<br>
+                    Monte Carlo simulation
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <div class="sub-header mb-sm">Realistic Market Simulation</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon success">01</span>
+                        <div><strong>Trading Fees</strong><br><span class="text-muted">Maker/taker fees, slippage, funding rates</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">02</span>
+                        <div><strong>Liquidation Mechanics</strong><br><span class="text-muted">Automatic position closure when margin insufficient</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">03</span>
+                        <div><strong>Slippage Model</strong><br><span class="text-muted">Price impact based on order size and market depth</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">04</span>
+                        <div><strong>Execution Latency</strong><br><span class="text-muted">Configurable network delay simulation</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Strategy Development Workflow</div>
+                <div class="flow-container" style="flex-wrap: wrap;">
+                    <div class="flow-step-compact">
+                        <div class="flow-number">1</div>
+                        <div class="flow-label">Define<br>Logic</div>
+                    </div>
+                    <div class="flow-step-compact">
+                        <div class="flow-number">2</div>
+                        <div class="flow-label">Set<br>Parameters</div>
+                    </div>
+                    <div class="flow-step-compact">
+                        <div class="flow-number">3</div>
+                        <div class="flow-label">Run<br>Backtest</div>
+                    </div>
+                    <div class="flow-step-compact">
+                        <div class="flow-number">4</div>
+                        <div class="flow-label">Optimize<br>Strategy</div>
+                    </div>
+                    <div class="flow-step-compact">
+                        <div class="flow-number">5</div>
+                        <div class="flow-label">Deploy<br>Live</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">8 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 9: Competitive Analysis -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Competitive Landscape</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-lg">
+            <h2>Market Positioning</h2>
+        </div>
+        
+        <table class="data-table mb-lg">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Capability</th>
+                    <th style="width: 15%;">iFiNN</th>
+                    <th style="width: 15%;">TradingView</th>
+                    <th style="width: 15%;">QuantConnect</th>
+                    <th style="width: 15%;">Bloomberg</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>130+ Technical Indicators</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="check-mark">Yes</td>
+                </tr>
+                <tr>
+                    <td><strong>User-Configurable ML Models</strong></td>
+                    <td class="check-mark">Yes Full Control</td>
+                    <td class="cross-mark">No</td>
+                    <td class="partial">Limited</td>
+                    <td class="cross-mark">No</td>
+                </tr>
+                <tr>
+                    <td>Transparent Model Architecture</td>
+                    <td class="check-mark">Yes Complete</td>
+                    <td class="cross-mark">No</td>
+                    <td class="partial">Partial</td>
+                    <td class="cross-mark">No</td>
+                </tr>
+                <tr>
+                    <td>Fourier Transform Analysis</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="cross-mark">No</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="check-mark">Yes</td>
+                </tr>
+                <tr>
+                    <td>Multi-Asset (Crypto + Stocks + Options)</td>
+                    <td class="check-mark">Yes Unified</td>
+                    <td class="check-mark">Yes</td>
+                    <td class="partial">Stocks Only</td>
+                    <td class="check-mark">Yes</td>
+                </tr>
+                <tr>
+                    <td>Order Book Analytics</td>
+                    <td class="check-mark">Yes Advanced</td>
+                    <td class="partial">Basic</td>
+                    <td class="cross-mark">No</td>
+                    <td class="check-mark">Yes</td>
+                </tr>
+                <tr>
+                    <td><strong>Annual Cost</strong></td>
+                    <td><strong>$588 - $2,388</strong></td>
+                    <td>$180 - $1,440</td>
+                    <td>$0 - $12,960+</td>
+                    <td><strong>$24,000+</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <h3>Competitive Advantages</h3>
+            <div class="info-grid">
+                <div>
+                    <strong class="accent-text">Full ML Pipeline Control</strong><br>
+                    <span style="color: var(--text-secondary);">Complete training, validation, and deployment control - not just predictions</span>
+                </div>
+                <div>
+                    <strong class="accent-text">Mathematical Transparency</strong><br>
+                    <span style="color: var(--text-secondary);">Documented formulas and theory for every indicator and model</span>
+                </div>
+                <div>
+                    <strong class="accent-text">Unified Cross-Asset Platform</strong><br>
+                    <span style="color: var(--text-secondary);">One interface for crypto, stocks, futures, and options</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">9 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 10: Business Model -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Business Model</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Revenue Streams</h2>
+        </div>
+
+        <div class="grid-4 mb-md">
+            <div class="pricing-card">
+                <div class="pricing-tier">Free</div>
+                <div class="pricing-price">$0<span>/mo</span></div>
+                <ul class="pricing-features">
+                    <li>30+ core indicators</li>
+                    <li>Basic pattern detection</li>
+                    <li>1-year historical data</li>
+                    <li>Paper trading</li>
+                    <li>Community support</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-tier">Pro</div>
+                <div class="pricing-price">$49<span>/mo</span></div>
+                <ul class="pricing-features">
+                    <li>All 130+ indicators</li>
+                    <li>Real-time streaming</li>
+                    <li>Pre-trained ML models</li>
+                    <li>Unlimited backtests</li>
+                    <li>10-year historical data</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-tier">Elite</div>
+                <div class="pricing-price">$199<span>/mo</span></div>
+                <ul class="pricing-features">
+                    <li>Everything in Pro</li>
+                    <li><strong>Custom ML training</strong></li>
+                    <li>GPU acceleration</li>
+                    <li>API: 100k calls/day</li>
+                    <li>Priority support</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-tier">Enterprise</div>
+                <div class="pricing-price">Custom</div>
+                <ul class="pricing-features">
+                    <li>White-label solutions</li>
+                    <li>On-premise deployment</li>
+                    <li>Dedicated infrastructure</li>
+                    <li>Custom development</li>
+                    <li>SLA &amp; 24/7 support</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <div class="sub-header mb-sm">Additional Revenue</div>
+                <ul class="revenue-list">
+                    <li><strong>API Credits:</strong> $0.001 - $0.01 per call</li>
+                    <li><strong>Custom ML Training:</strong> $500 - $5,000 per model</li>
+                    <li><strong>Educational Courses:</strong> $99 - $499 per course</li>
+                    <li><strong>Strategy Marketplace:</strong> 30% commission on sales</li>
+                </ul>
+            </div>
+            <div class="grid-2" style="gap: var(--space-sm);">
+                <div class="stat-card">
+                    <div class="stat-value">$8.5B</div>
+                    <div class="stat-label">Algo Trading Market</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">18.2%</div>
+                    <div class="stat-label">CAGR 2024-2030</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">420M</div>
+                    <div class="stat-label">Crypto Traders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$1.2T</div>
+                    <div class="stat-label">Crypto Market Cap</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">10 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 11: Roadmap -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Product Roadmap</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Development Timeline</h2>
+        </div>
+
+        <div class="timeline mb-md">
+            <div class="timeline-item">
+                <div class="timeline-phase">Q3 2026</div>
+                <div class="timeline-title">Foundation</div>
+                <ul class="timeline-list">
+                    <li>[Complete] 130+ indicators (pandas_ta)</li>
+                    <li>[Complete] Fourier transform module</li>
+                    <li>[Complete] Pattern detection (18+)</li>
+                    <li>[Complete] Backtesting engine</li>
+                    <li>[In Progress] FastAPI backend (90%)</li>
+                    <li>[In Progress] Frontend UI (70%)</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">Q4 2026</div>
+                <div class="timeline-title">ML Integration</div>
+                <ul class="timeline-list">
+                    <li>[Planned] ML training pipeline</li>
+                    <li>[Planned] Hyperparameter UI</li>
+                    <li>[Planned] Model explainability</li>
+                    <li>[Planned] Order book analytics</li>
+                    <li>[Planned] Options Greeks calculator</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">Q1 2027</div>
+                <div class="timeline-title">Beta Launch</div>
+                <ul class="timeline-list">
+                    <li>[Planned] Public beta (Free + Pro)</li>
+                    <li>[Planned] User onboarding</li>
+                    <li>[Planned] Community forum</li>
+                    <li>[Planned] Exchange partnerships</li>
+                    <li>[Planned] Paper trading</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">Q2 2027</div>
+                <div class="timeline-title">Production</div>
+                <ul class="timeline-list">
+                    <li>[Planned] Official v1.0 release</li>
+                    <li>[Planned] Elite tier launch</li>
+                    <li>[Planned] Live trading bots</li>
+                    <li>[Planned] Mobile application</li>
+                    <li>[Planned] Strategy marketplace</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>2028-2029: Scale and Expansion</h3>
+            <div class="info-grid-5">
+                <div><strong style="color: var(--text-primary);">Enterprise Tier</strong><br>White-label solutions</div>
+                <div><strong style="color: var(--text-primary);">Institutional</strong><br>Hedge fund partnerships</div>
+                <div><strong style="color: var(--text-primary);">Premium APIs</strong><br>X/Reddit licensed data</div>
+                <div><strong style="color: var(--text-primary);">Global</strong><br>Multi-language support</div>
+                <div><strong style="color: var(--text-primary);">Compliance</strong><br>SEC, FINRA, MiFID II</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">11 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 12: Investment -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Investment Opportunity</span>
+    </div>
+    <div class="slide-body">
+        <div class="grid-2">
+            <div>
+                <div class="section-header mb-md">
+                    <h2>Investment Thesis</h2>
+                </div>
+                <ul class="feature-list mb-md">
+                    <li>
+                        <span class="list-icon success">01</span>
+                        <div><strong>Clear Market Need</strong><br><span class="text-muted">420M+ crypto traders lack institutional-grade tools</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">02</span>
+                        <div><strong>Unique Value Proposition</strong><br><span class="text-muted">Only platform with full ML control + multi-asset support</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">03</span>
+                        <div><strong>Scalable Revenue Model</strong><br><span class="text-muted">Subscription + API credits + marketplace commissions</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">04</span>
+                        <div><strong>Large and Growing Market</strong><br><span class="text-muted">$8.5B algo trading market at 18.2% CAGR</span></div>
+                    </li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>Funding Request</h3>
+                    <div class="gradient-text funding-amount">$400K Seed Round</div>
+                    <div class="text-secondary" style="font-size: var(--font-small); margin-top: var(--space-xs);">
+                        MVP development - Core team - Early market validation
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Use of Funds</div>
+                
+                <div class="fund-card">
+                    <div class="fund-card-header">
+                        <span><strong>Engineering and Product</strong></span>
+                        <span class="accent-text"><strong>50%</strong></span>
+                    </div>
+                    <div class="fund-card-desc">Backend development, ML pipeline, frontend UI/UX</div>
+                </div>
+                
+                <div class="fund-card">
+                    <div class="fund-card-header">
+                        <span><strong>Infrastructure and Data</strong></span>
+                        <span class="accent-text"><strong>25%</strong></span>
+                    </div>
+                    <div class="fund-card-desc">Cloud infrastructure, GPU compute, exchange APIs</div>
+                </div>
+                
+                <div class="fund-card">
+                    <div class="fund-card-header">
+                        <span><strong>Marketing and Growth</strong></span>
+                        <span class="accent-text"><strong>15%</strong></span>
+                    </div>
+                    <div class="fund-card-desc">User acquisition, partnerships, community</div>
+                </div>
+                
+                <div class="fund-card" style="margin-bottom: 0;">
+                    <div class="fund-card-header">
+                        <span><strong>Operations and Legal</strong></span>
+                        <span class="accent-text"><strong>10%</strong></span>
+                    </div>
+                    <div class="fund-card-desc">Regulatory compliance, administration</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">12 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 13: Hidden Revenue Stream -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Our Hidden Revenue Stream</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-lg">
+            <h2>Open Model Leaderboard + Marketplace</h2>
+            <p>Like Hugging Face's MTEB - public models compete; top performers exclusively licensed to iFiNN</p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <div class="sub-header mb-sm">Model Marketplace</div>
+                <ul class="feature-list mb-md">
+                    <li>
+                        <span class="list-icon success">$</span>
+                        <div><strong>Model Licensing Revenue</strong><br><span class="text-muted">Users publish strategies; iFiNN takes 15-30% commission on sales</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">$</span>
+                        <div><strong>Enterprise Benchmarking</strong><br><span class="text-muted">Hedge funds pay for access to leaderboard rankings and model audits</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">$</span>
+                        <div><strong>Strategy Cloning Fees</strong><br><span class="text-muted">One-click deployment of top-performing community models</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">$</span>
+                        <div><strong>Certified Model Badges</strong><br><span class="text-muted">Verification and backtesting certification for published strategies</span></div>
+                    </li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>Revenue Potential</h3>
+                    <div class="info-grid">
+                        <div>
+                            <strong class="accent-text">$50K - $200K</strong><br>
+                            <span style="color: var(--text-secondary);">Year 1 marketplace commissions</span>
+                        </div>
+                        <div>
+                            <strong class="accent-text">$500K - $2M</strong><br>
+                            <span style="color: var(--text-secondary);">Year 3 with enterprise clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header mb-sm">Open Finance Leaderboard</div>
+                <div class="card mb-md">
+                    <div class="card-title">Hugging Face Model for Finance</div>
+                    <div class="card-text">
+                        <strong>1. Public model submissions</strong><br>
+                        All models open-source; community can fork and improve<br><br>
+                        <strong>2. Competitive benchmarking</strong><br>
+                        Ranked by Sharpe, Sortino, MDD across 50+ assets<br><br>
+                        <strong>3. Top performers: exclusive license</strong><br>
+                        Best models licensed to iFiNN for commercial use only<br><br>
+                        <strong>4. Ecosystem growth</strong><br>
+                        Competition drives innovation in finance ML tools
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Strategic Licensing</div>
+                    <div class="card-text">
+                        Top-ranked models grant iFiNN exclusive commercial rights;
+                        creators retain academic/personal use - fosters competition
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Confidential</span>
+        <span class="page-number">13 / 14</span>
+    </div>
+</div>
+
+<!-- SLIDE 14: Contact -->
+<div class="slide">
+    <div class="slide-body title-slide">
+        <div class="main-logo">iFiNN</div>
+        <div class="tagline mb-xl">
+            The Future of Financial Analytics
+        </div>
+
+        <div class="grid-3 mb-lg">
+            <div class="card cta-card">
+                <div class="card-icon">TR</div>
+                <div class="card-title">For Traders</div>
+                <div class="card-text">Institutional-grade analytics without institutional pricing</div>
+            </div>
+            <div class="card cta-card">
+                <div class="card-icon">IN</div>
+                <div class="card-title">For Investors</div>
+                <div class="card-text">$400K seed opportunity in $8.5B+ growing market</div>
+            </div>
+            <div class="card cta-card">
+                <div class="card-icon">PT</div>
+                <div class="card-title">For Partners</div>
+                <div class="card-text">White-label and API integration opportunities</div>
+            </div>
+        </div>
+
+        <div style="text-align: center;" class="mb-lg">
+            <div class="contact-info mb-md">
+                team@ifinn-analytics.io | www.ifinn-analytics.io | github.com/iFiNN-iiserk
+            </div>
+            <div class="cta-button">
+                Schedule a Demo
+            </div>
+        </div>
+
+        <div class="contact-footer">
+            iFiNN-IISERK | January 2026 | Confidential
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onbeforeprint = function() {
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.style.margin = '0';
+            slide.style.boxShadow = 'none';
+        });
+    };
+</script>
+
+</body>
+</html>
