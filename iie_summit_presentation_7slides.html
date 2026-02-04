@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFiNN - IIE Summit 2026 (Executive Summary)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0f0a;
+            --bg-secondary: #0f1a12;
+            --bg-card: #12241a;
+            --bg-elevated: #1a2e22;
+            --accent-primary: #10b981;
+            --accent-secondary: #34d399;
+            --accent-tertiary: #00ff88;
+            --accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #00ff88 100%);
+            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fcd34d 100%);
+            --success: #00ff88;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #1f3d2a;
+            --border-light: #2d5a3d;
+            
+            --font-title: 48px;
+            --font-h1: 32px;
+            --font-h2: 22px;
+            --font-body: 14px;
+            --font-small: 12px;
+            --font-caption: 11px;
+            --font-micro: 10px;
+            
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            --header-height: 60px;
+            --footer-height: 44px;
+            --margin-safe: 48px;
+            --line-height: 1.5;
+        }
+
+        @page { size: 1280px 720px; margin: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--bg-primary);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        @media print { body { background: var(--bg-primary); } .slide { margin: 0; box-shadow: none; } }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .slide-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: var(--font-h2);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g1)' stroke-width='2.5'/%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g1)' stroke-width='2'/%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g1)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .slide-title { font-size: var(--font-body); font-weight: 600; color: var(--text-secondary); }
+
+        .slide-body {
+            padding: var(--space-lg) var(--margin-safe);
+            height: calc(720px - var(--header-height) - var(--footer-height));
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--footer-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-top: 1px solid var(--border);
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+        }
+
+        .page-number { font-weight: 600; color: var(--text-secondary); }
+
+        /* Title Slide Styles */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .logo-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .logo-img-wrapper {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img { height: 55px; width: auto; object-fit: contain; }
+
+        .title-slide .main-logo {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+        }
+
+        .title-slide .tagline {
+            font-size: var(--font-h2);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 700px;
+            line-height: var(--line-height);
+        }
+
+        .highlight-row {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .highlight-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: var(--font-small);
+            font-weight: 500;
+            color: var(--accent-secondary);
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            line-height: var(--line-height);
+        }
+
+        .card-text {
+            font-size: var(--font-small);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Lists */
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-body);
+            line-height: var(--line-height);
+        }
+        .feature-list li:last-child { border-bottom: none; }
+
+        .list-icon {
+            min-width: 28px;
+            height: 22px;
+            padding: 0 var(--space-xs);
+            background: var(--bg-elevated);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--space-sm);
+            flex-shrink: 0;
+            font-size: var(--font-micro);
+            font-weight: 600;
+        }
+        .list-icon.success { color: var(--success); background: rgba(16, 185, 129, 0.15); }
+        .list-icon.error { color: var(--error); background: rgba(239, 68, 68, 0.15); }
+
+        /* Section Header */
+        .section-header { margin-bottom: var(--space-md); }
+        .section-header h2 {
+            font-size: var(--font-h1);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--space-xs);
+            line-height: 1.2;
+        }
+        .section-header p {
+            font-size: var(--font-body);
+            color: var(--text-secondary);
+            max-width: 850px;
+            line-height: var(--line-height);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(0, 255, 136, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: var(--space-lg);
+        }
+        .info-box h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-sm); }
+
+        /* Gold Box */
+        .gold-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(251, 191, 36, 0.08) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: var(--space-lg);
+        }
+        .gold-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Stat Box */
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: var(--space-md);
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .leaderboard-header {
+            background: var(--bg-elevated);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-caption);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-small);
+        }
+        .leaderboard-row:last-child { border-bottom: none; }
+        .rank { font-weight: 700; color: var(--accent-primary); width: 30px; }
+        .rank.gold { color: #fbbf24; }
+        .rank.silver { color: #94a3b8; }
+        .rank.bronze { color: #d97706; }
+        .model-name { flex: 1; font-weight: 500; }
+        .model-stat { text-align: right; color: var(--text-secondary); width: 80px; }
+
+        /* Utility Classes */
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .text-secondary { color: var(--text-secondary); }
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .col-header {
+            font-size: var(--font-h2);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+    <div class="slide-body title-slide">
+        <div class="logo-bar">
+            <div class="logo-img-wrapper">
+                <img src="https://www.iiserkol.ac.in/web/assets/images/logo/logo.png" alt="IISER Kolkata" class="logo-img">
+            </div>
+            <img src="./iie_summit_logo.png" alt="IIE Summit" class="logo-img">
+        </div>
+        <div class="main-logo">iFiNN</div>
+        <div class="tagline">
+            Intelligent Financial Neural Network<br>
+            <span style="font-size: 0.85em; color: var(--accent-primary);">Democratizing AI-Powered Trading Intelligence</span>
+        </div>
+        <div class="highlight-row">
+            <span class="highlight-pill">🎛️ No-Code AI Tuning</span>
+            <span class="highlight-pill">📊 Social Sentiment</span>
+            <span class="highlight-pill">🏆 Open Leaderboard</span>
+            <span class="highlight-pill">💎 Data = Gold</span>
+        </div>
+        <div style="font-size: var(--font-body); color: var(--text-muted);">
+            IIE Summit 2026 · Team Synapse · IISER Kolkata
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: Problem & Solution -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">The Problem We Solve</span>
+    </div>
+    <div class="slide-body">
+        <div class="grid-2">
+            <div>
+                <div class="col-header" style="border-color: var(--error);">The Gap</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon error">✗</span>
+                        <div><strong>Black-Box AI Tools</strong><br><span class="text-secondary" style="font-size: var(--font-small);">No control over predictions or hyperparameters</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">✗</span>
+                        <div><strong>Fragmented Platforms</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Need 5+ tools: charts, news, ML, backtesting</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">✗</span>
+                        <div><strong>Institutional Pricing</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Bloomberg ₹20L+/year — inaccessible to retail</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">✗</span>
+                        <div><strong>Information Overload</strong><br><span class="text-secondary" style="font-size: var(--font-small);">No semantic understanding of news/social media</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-header" style="border-color: var(--success);">Our Solution</div>
+                <ul class="feature-list">
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Visual AI Model Tuning</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Sliders for hyperparameters — no coding required</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>All-in-One Platform</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Charts + News + ML + Backtest + Execution</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Accessible Pricing</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Free tier; Pro at ₹499/month</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Semantic Analysis Engine</strong><br><span class="text-secondary" style="font-size: var(--font-small);">Context-aware Reddit/Twitter/Discord NLP</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box" style="margin-top: var(--space-lg);">
+            <h3>We're Already There</h3>
+            <p class="text-secondary" style="font-size: var(--font-body);">Research-driven development: We track arXiv, SSRN, and quant finance journals daily. <strong style="color: var(--text-primary);">New papers = New features.</strong> Before you finish reading about a breakthrough equation, we've already deployed it on the platform.</p>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">2 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 3: Core Innovations -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">5 Core Innovations</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>What Makes Us Different</h2>
+            <p>Five breakthrough features that put professional-grade AI in the hands of retail traders.</p>
+        </div>
+        <div class="grid-3 mb-lg">
+            <div class="card">
+                <div class="card-icon">🎛️</div>
+                <div class="card-title">No-Code AI Model Tuning</div>
+                <div class="card-text">Visual sliders for hyperparameters (learning rate, layers, dropout, epochs). Train LSTM, GRU, Transformers, XGBoost without writing code.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <div class="card-title">Social Sentiment Intelligence</div>
+                <div class="card-text">Real-time semantic analysis of Reddit, Twitter/X, Discord. FinBERT-powered sentiment scoring with price correlation.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Niche Market Analysis</div>
+                <div class="card-text">Custom domain analysis: Healthcare, DeFi, ESG, Gaming, Indian Markets (NSE/BSE). User-defined keyword filters and subreddit watchlists.</div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <div class="card-title">Open Model Leaderboard</div>
+                <div class="card-text">Public competition for ML models. Transparent benchmarking across 50+ assets. Rankings by Sharpe, Sortino, MDD, Win Rate. Like Kaggle for finance.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛒</div>
+                <div class="card-title">Strategy Marketplace</div>
+                <div class="card-text">Buy, sell, and license trading models. iFiNN takes 15-30% commission. One-click strategy deployment. The App Store for financial algorithms.</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">3 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 4: Technical Platform -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Technical Capabilities</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Built for Scale & Performance</h2>
+            <p>Production-grade infrastructure with GPU acceleration and real-time data processing.</p>
+        </div>
+        <div class="grid-2">
+            <div>
+                <div class="grid-2 mb-lg" style="gap: var(--space-sm);">
+                    <div class="stat-box">
+                        <div class="stat-value">130+</div>
+                        <div class="stat-label">Technical Indicators</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">18+</div>
+                        <div class="stat-label">Pattern Detectors</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">ML Model Types</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">&lt;1ms</div>
+                        <div class="stat-label">Data Latency</div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h3>Tech Stack</h3>
+                    <div class="text-secondary" style="font-size: var(--font-small); line-height: 1.8;">
+                        <strong>Frontend:</strong> React + Lightweight Charts<br>
+                        <strong>Backend:</strong> FastAPI (REST + WebSocket)<br>
+                        <strong>Analytics:</strong> pandas_ta, Fourier analysis<br>
+                        <strong>ML:</strong> TensorFlow, PyTorch, XGBoost (GPU)<br>
+                        <strong>Data:</strong> PostgreSQL + TimescaleDB, Redis
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card mb-sm">
+                    <div class="card-title" style="font-size: 16px; margin-bottom: var(--space-md);">Data Integrations</div>
+                    <div class="text-secondary" style="font-size: var(--font-small); line-height: 1.8;">
+                        <strong style="color: var(--accent-primary);">Crypto:</strong> Binance, Bybit, Coinbase, OKX<br>
+                        <strong style="color: var(--accent-primary);">Equities:</strong> NSE/BSE (India), Alpha Vantage, Polygon<br>
+                        <strong style="color: var(--accent-primary);">Alt Data:</strong> Reddit, Twitter/X, Discord APIs<br>
+                        <strong style="color: var(--accent-primary);">News:</strong> RSS feeds, financial APIs
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title" style="font-size: 16px; margin-bottom: var(--space-sm);">Product Status</div>
+                    <div class="text-secondary" style="font-size: var(--font-small);">
+                        ✅ Core analytics engine complete<br>
+                        ✅ 130+ indicators implemented<br>
+                        ✅ FastAPI backend 90% done<br>
+                        🔄 Frontend UI in active development<br>
+                        🔄 Alpha testing with IISER students
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">4 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 5: Leaderboard & Marketplace -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Data Monetization Strategy</span>
+    </div>
+    <div class="slide-body">
+        <div class="grid-2">
+            <div>
+                <div class="section-header mb-md">
+                    <h2 style="font-size: 24px;">🏆 Open Model Leaderboard</h2>
+                </div>
+                <div class="leaderboard mb-md" style="font-size: var(--font-small);">
+                    <div class="leaderboard-header">
+                        <span>Rank</span>
+                        <span>Model Name</span>
+                        <span>Sharpe</span>
+                        <span>MDD</span>
+                    </div>
+                    <div class="leaderboard-row">
+                        <span class="rank gold">🥇</span>
+                        <span class="model-name">AlphaNet-v3</span>
+                        <span class="model-stat">2.84</span>
+                        <span class="model-stat">-8.2%</span>
+                    </div>
+                    <div class="leaderboard-row">
+                        <span class="rank silver">🥈</span>
+                        <span class="model-name">MomentumLSTM</span>
+                        <span class="model-stat">2.61</span>
+                        <span class="model-stat">-11.4%</span>
+                    </div>
+                    <div class="leaderboard-row">
+                        <span class="rank bronze">🥉</span>
+                        <span class="model-name">SentimentGBM</span>
+                        <span class="model-stat">2.45</span>
+                        <span class="model-stat">-9.7%</span>
+                    </div>
+                </div>
+                <ul class="feature-list" style="font-size: var(--font-small);">
+                    <li><strong>Train</strong> your model using our platform</li>
+                    <li><strong>Submit</strong> to public leaderboard</li>
+                    <li><strong>Compete</strong> with weekly rankings</li>
+                    <li><strong>Monetize</strong> top-performing models</li>
+                </ul>
+            </div>
+            <div>
+                <div class="gold-box mb-md">
+                    <h3>💎 Data is the New Gold</h3>
+                    <p class="text-secondary" style="font-size: var(--font-body); line-height: 1.7;">
+                        Every model trained on our platform generates valuable data: feature importance, prediction accuracy, market correlations.<br><br>
+                        <strong style="color: var(--text-primary); font-size: 15px;">We sit on the most valuable asset of the 21st century — structured financial intelligence.</strong>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-title" style="font-size: 16px;">Marketplace Revenue Streams</div>
+                    <div class="text-secondary" style="font-size: var(--font-small); line-height: 1.8; margin-top: var(--space-sm);">
+                        <strong style="color: var(--accent-primary);">💰 Model Licensing:</strong> 15-30% commission<br>
+                        <strong style="color: var(--accent-primary);">📈 Subscriptions:</strong> Monthly strategy access<br>
+                        <strong style="color: var(--accent-primary);">🏢 Enterprise:</strong> White-label & API licensing<br>
+                        <strong style="color: var(--accent-primary);">📊 Data Sales:</strong> Sentiment & prediction data
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">5 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 6: Business Model & Market -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Business Model & Market</span>
+    </div>
+    <div class="slide-body">
+        <div class="section-header mb-md">
+            <h2>Revenue Model</h2>
+            <p>Multi-tier subscription model with marketplace and enterprise revenue streams.</p>
+        </div>
+        <div class="grid-4 mb-lg">
+            <div class="card" style="border-top: 3px solid var(--accent-primary); padding: var(--space-md);">
+                <div class="card-title" style="font-size: 15px;">Free</div>
+                <div class="stat-value" style="font-size: 22px;">₹0</div>
+                <div class="card-text" style="margin-top: var(--space-sm); font-size: 11px;">
+                    • 30+ indicators<br>
+                    • Basic patterns<br>
+                    • Paper trading<br>
+                    • Community
+                </div>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent-secondary); padding: var(--space-md);">
+                <div class="card-title" style="font-size: 15px;">Pro</div>
+                <div class="stat-value" style="font-size: 22px;">₹499<span style="font-size: 10px; color: var(--text-muted);">/mo</span></div>
+                <div class="card-text" style="margin-top: var(--space-sm); font-size: 11px;">
+                    • 130+ indicators<br>
+                    • Real-time data<br>
+                    • Pre-trained ML<br>
+                    • Unlimited tests
+                </div>
+            </div>
+            <div class="card" style="border-top: 3px solid #f59e0b; padding: var(--space-md);">
+                <div class="card-title" style="font-size: 15px;">Elite</div>
+                <div class="stat-value" style="font-size: 22px;">₹1,999<span style="font-size: 10px; color: var(--text-muted);">/mo</span></div>
+                <div class="card-text" style="margin-top: var(--space-sm); font-size: 11px;">
+                    • Custom training<br>
+                    • GPU access<br>
+                    • Sentiment API<br>
+                    • Priority support
+                </div>
+            </div>
+            <div class="card" style="border-top: 3px solid #8b5cf6; padding: var(--space-md);">
+                <div class="card-title" style="font-size: 15px;">Enterprise</div>
+                <div class="stat-value" style="font-size: 22px;">Custom</div>
+                <div class="card-text" style="margin-top: var(--space-sm); font-size: 11px;">
+                    • White-label<br>
+                    • On-premise<br>
+                    • Dedicated team<br>
+                    • Custom dev
+                </div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="info-box">
+                <h3>Market Opportunity</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); margin-top: var(--space-sm);">
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--accent-primary);">100M+</div>
+                        <div class="text-secondary" style="font-size: var(--font-caption);">Indian Demat Accounts</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--accent-primary);">$150B</div>
+                        <div class="text-secondary" style="font-size: var(--font-caption);">Indian Fintech Market</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--accent-primary);">18.2%</div>
+                        <div class="text-secondary" style="font-size: var(--font-caption);">CAGR (2024-2030)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--error);">90%+</div>
+                        <div class="text-secondary" style="font-size: var(--font-caption);">Retail Loss Rate (SEBI)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title" style="font-size: 16px; margin-bottom: var(--space-md);">Competitive Advantage</div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-sm);">
+                    <div>
+                        <div style="font-weight: 600; color: var(--accent-primary); font-size: var(--font-small);">Transparency</div>
+                        <div class="text-secondary" style="font-size: var(--font-micro);">Full ML control</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--accent-primary); font-size: var(--font-small);">Social-First</div>
+                        <div class="text-secondary" style="font-size: var(--font-micro);">Sentiment engine</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--accent-primary); font-size: var(--font-small);">Community</div>
+                        <div class="text-secondary" style="font-size: var(--font-micro);">Leaderboard</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--accent-primary); font-size: var(--font-small);">India Focus</div>
+                        <div class="text-secondary" style="font-size: var(--font-micro);">NSE/BSE native</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">6 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 7: Contact & CTA -->
+<div class="slide">
+    <div class="slide-body title-slide">
+        <div class="main-logo" style="font-size: 48px;">Join the Revolution</div>
+        <div class="tagline mb-lg">
+            The future of financial intelligence is transparent, accessible, and community-driven.
+        </div>
+        
+        <div style="display: flex; gap: 60px; align-items: center; margin-bottom: var(--space-xl);">
+            <div style="background: white; padding: 20px; border-radius: 16px;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://synapse-iiserk.github.io/" alt="Scan for Website">
+            </div>
+            <div style="text-align: left;">
+                <div style="font-size: 20px; font-weight: 600; color: var(--accent-primary); margin-bottom: var(--space-sm);">synapse-iiserk.github.io</div>
+                <div class="text-secondary" style="font-size: var(--font-body); line-height: 1.8;">
+                    🌐 Live Website<br>
+                    📧 team@ifinn.tech<br>
+                    🐙 github.com/Synapse-iiserk
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-row">
+            <span class="highlight-pill">🎛️ No-Code AI</span>
+            <span class="highlight-pill">📊 Social Sentiment</span>
+            <span class="highlight-pill">🏆 Open Leaderboard</span>
+            <span class="highlight-pill">💎 Data = Gold</span>
+        </div>
+
+        <div style="margin-top: var(--space-xl); padding-top: var(--space-md); border-top: 1px solid var(--border); color: var(--text-secondary);">
+            <p><strong>Team Synapse</strong> · IISER Kolkata · IIE Summit 2026</p>
+            <p style="font-size: var(--font-small); margin-top: var(--space-xs);">Democratizing AI-Powered Trading Intelligence</p>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>IIE Summit 2026</span>
+        <span class="page-number">7 / 7</span>
+    </div>
+</div>
+
+<script>
+    window.onbeforeprint = function() {
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.style.margin = '0';
+            slide.style.boxShadow = 'none';
+        });
+    };
+</script>
+
+</body>
+</html>
