@@ -21,20 +21,22 @@ The current implementation uses placeholder SVG files (vc_logo_1.svg through vc_
 ### Option 2: Update the HTML directly
 1. Download the actual logo images
 2. Save them with meaningful names (e.g., `sequoia_capital.png`, `andreessen_horowitz.png`)
-3. Update the image src attributes in `synapse_platform_presentation.html` around line 1860:
+3. Update the image src and alt attributes in `synapse_platform_presentation.html` around line 1860:
    ```html
-   <img src="your_logo_1.png" alt="Company Name 1" style="height: 50px; opacity: 0.7; filter: grayscale(100%);" />
+   <img src="your_logo_1.png" alt="Sequoia Capital logo" style="height: 50px; opacity: 0.7; filter: grayscale(100%);" />
    ```
 
-## Google Drive Links (from issue)
-The original logo images can be found at:
-1. https://share.google/UOu5loURrOcmP7eqh
-2. https://share.google/CFin470jnYhOSzjGH
-3. https://share.google/tifOc9nWV4buVAU1M
-4. https://share.google/eHtnDocpXirneQV90
-5. https://share.google/nCQs6rPddjon8Oxkl
+**Important:** When replacing logos, always update the `alt` attribute with descriptive text (e.g., "Sequoia Capital logo", "Andreessen Horowitz logo") for accessibility and screen reader users.
 
-**Note:** These links may need to be converted to full Google Drive URLs for downloading.
+## Google Drive Links (from issue)
+The original logo images were referenced with these identifiers:
+1. UOu5loURrOcmP7eqh
+2. CFin470jnYhOSzjGH
+3. tifOc9nWV4buVAU1M
+4. eHtnDocpXirneQV90
+5. nCQs6rPddjon8Oxkl
+
+**Note:** These appear to be shortened Google Drive identifiers. You may need to obtain the actual Google Drive share links or download the images directly from the source provided in the issue.
 
 ## Styling
 The logos are styled with:
