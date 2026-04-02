@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFiNN - Intelligent Financial Neural Network</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0f0a;
+            --bg-secondary: #0f1a12;
+            --bg-card: #12241a;
+            --bg-elevated: #1a2e22;
+            --accent-primary: #10b981;
+            --accent-secondary: #34d399;
+            --accent-tertiary: #00ff88;
+            --accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #00ff88 100%);
+            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fcd34d 100%);
+            --success: #00ff88;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #1f3d2a;
+            --border-light: #2d5a3d;
+            
+            --font-title: 48px;
+            --font-h1: 32px;
+            --font-h2: 22px;
+            --font-body: 14px;
+            --font-small: 12px;
+            --font-caption: 11px;
+            --font-micro: 10px;
+            
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            --header-height: 60px;
+            --footer-height: 44px;
+            --margin-safe: 48px;
+            --line-height: 1.5;
+        }
+
+        @page { size: 1280px 720px; margin: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--bg-primary);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        @media print { body { background: var(--bg-primary); } .slide { margin: 0; box-shadow: none; } }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .slide-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: var(--font-h2);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g1)' stroke-width='2.5'/%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g1)' stroke-width='2'/%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g1)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .slide-title { font-size: var(--font-body); font-weight: 600; color: var(--text-secondary); }
+
+        .slide-body {
+            padding: var(--space-lg) var(--margin-safe);
+            height: calc(720px - var(--header-height) - var(--footer-height));
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--footer-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin-safe);
+            border-top: 1px solid var(--border);
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+        }
+
+        .page-number { font-weight: 600; color: var(--text-secondary); }
+
+        /* Title Slide Styles */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .logo-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .logo-img-wrapper {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img { height: 55px; width: auto; object-fit: contain; }
+
+        .title-slide .main-logo {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+        }
+
+        .title-slide .tagline {
+            font-size: var(--font-h2);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            max-width: 700px;
+            line-height: var(--line-height);
+        }
+
+        .highlight-row {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .highlight-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: var(--font-small);
+            font-weight: 500;
+            color: var(--accent-secondary);
+        }
+
+        /* Section Header */
+        .section-header { margin-bottom: var(--space-md); }
+        .section-header h2 {
+            font-size: var(--font-h1);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--space-xs);
+            line-height: 1.2;
+        }
+        .section-header p {
+            font-size: var(--font-body);
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: var(--line-height);
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .card:hover { border-color: var(--border-light); }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: var(--font-body);
+            font-weight: 700;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            line-height: var(--line-height);
+        }
+
+        .card-text {
+            font-size: var(--font-small);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Feature Cards with Icons */
+        .feature-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        }
+
+        .feature-card .icon-large {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Lists */
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-body);
+            line-height: var(--line-height);
+        }
+        .feature-list li:last-child { border-bottom: none; }
+
+        .list-icon {
+            min-width: 28px;
+            height: 22px;
+            padding: 0 var(--space-xs);
+            background: var(--bg-elevated);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--space-sm);
+            flex-shrink: 0;
+            font-size: var(--font-micro);
+            font-weight: 600;
+        }
+        .list-icon.success { color: var(--success); background: rgba(16, 185, 129, 0.15); }
+        .list-icon.error { color: var(--error); background: rgba(239, 68, 68, 0.15); }
+
+        /* Two Column Layout */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+        .col-header {
+            font-size: var(--font-h2);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--accent-primary);
+        }
+
+        /* Architecture Layers */
+        .arch-layer {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-primary);
+            padding: var(--space-sm) var(--space-md);
+            margin-bottom: var(--space-sm);
+            border-radius: 0 8px 8px 0;
+        }
+        .arch-layer-title { font-size: var(--font-body); font-weight: 600; margin-bottom: 2px; }
+        .arch-layer-desc { font-size: var(--font-caption); color: var(--text-muted); line-height: 1.4; }
+        .arch-layer.green { border-left-color: #10b981; }
+        .arch-layer.blue { border-left-color: #3b82f6; }
+        .arch-layer.purple { border-left-color: #8b5cf6; }
+        .arch-layer.orange { border-left-color: #f59e0b; }
+        .arch-layer.red { border-left-color: #ef4444; }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(0, 255, 136, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: var(--space-lg);
+        }
+        .info-box h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-sm); }
+
+        /* Gold Box for Data is Gold */
+        .gold-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(251, 191, 36, 0.08) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: var(--space-lg);
+        }
+        .gold-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Slider Mockup */
+        .slider-mockup {
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-caption);
+            margin-bottom: 6px;
+        }
+        .slider-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            position: relative;
+        }
+        .slider-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+        }
+        .slider-thumb {
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Table */
+        .data-table { width: 100%; border-collapse: collapse; font-size: var(--font-small); }
+        .data-table th {
+            background: var(--bg-elevated);
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td { padding: var(--space-sm) var(--space-md); border-bottom: 1px solid var(--border); }
+        .data-table tr:last-child td { border-bottom: none; }
+        .check-mark { color: var(--success); font-weight: 700; }
+        .cross-mark { color: var(--error); font-weight: 700; }
+
+        /* Timeline */
+        .timeline { display: flex; gap: var(--space-md); }
+        .timeline-item {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: var(--space-md);
+            border-top: 3px solid var(--accent-primary);
+        }
+        .timeline-phase {
+            font-size: var(--font-micro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        .timeline-title { font-size: var(--font-body); font-weight: 600; margin-bottom: var(--space-sm); }
+        .timeline-list { list-style: none; font-size: var(--font-micro); color: var(--text-secondary); }
+        .timeline-list li { padding: 3px 0; line-height: 1.4; }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .leaderboard-header {
+            background: var(--bg-elevated);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-caption);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-small);
+        }
+        .leaderboard-row:last-child { border-bottom: none; }
+        .rank { font-weight: 700; color: var(--accent-primary); width: 30px; }
+        .rank.gold { color: #fbbf24; }
+        .rank.silver { color: #94a3b8; }
+        .rank.bronze { color: #d97706; }
+        .model-name { flex: 1; font-weight: 500; }
+        .model-stat { text-align: right; color: var(--text-secondary); width: 80px; }
+
+        /* Social Icons */
+        .social-icons { display: flex; gap: var(--space-md); margin-top: var(--space-md); }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        /* Image Styling */
+        .slide-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 280px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        /* Utility Classes */
+        .sub-header { font-size: var(--font-body); font-weight: 600; margin-bottom: var(--space-sm); }
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
+        .text-muted { color: var(--text-muted); }
+        .text-secondary { color: var(--text-secondary); }
+        .accent-text { color: var(--accent-primary); }
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Big Quote */
+        .big-quote {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            margin: var(--space-xl) 0;
+        }
+
+        /* Stat Box */
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: var(--space-md);
+            text-align: center;
+        }
+        .stat-value {
+            font-size: var(--font-h1);
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: var(--font-caption);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Flow Steps */
+        .flow-container { display: flex; align-items: center; gap: var(--space-sm); }
+        .flow-step {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+        }
+        .flow-number {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-small);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        .flow-label { font-size: var(--font-caption); font-weight: 500; color: var(--text-secondary); }
+        .flow-arrow { color: var(--accent-primary); font-size: 18px; }
+
+        /* Contact Footer */
+        .contact-footer {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+    <div class="slide-body title-slide">
+        <!-- Top logos: EarthOn Foundation (centered, prominent) -->
+        <div class="logo-bar" style="display: flex; justify-content: center; align-items: center; gap: 50px; margin-bottom: 20px;">
+            <div class="logo-img-wrapper" style="background: white; padding: 14px 20px; border-radius: 12px;">
+                <img src="EarthOn foundation logo.png" alt="EarthOn Foundation" class="logo-img" style="height: 75px; width: auto; object-fit: contain;">
+            </div>
+        </div>
+        <div style="font-size: 14px; color: var(--accent-primary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+            EarthOn Foundation Greenovation Challenge 2026
+        </div>
+        <div class="main-logo" style="margin-top: 6px;">iFiNN</div>
+        <div class="tagline">
+            Intelligent Financial Neural Network<br>
+            <span style="font-size: 0.85em; color: var(--accent-primary);">AI-Powered Sustainable Climate Finance for Retail Investors</span>
+        </div>
+        <div class="highlight-row" style="margin-top: 12px;">
+            <span class="highlight-pill">🌱 ESG Portfolio Intelligence</span>
+            <span class="highlight-pill">🌍 Carbon Market Analytics</span>
+            <span class="highlight-pill">⚡ Clean Energy Signals</span>
+            <span class="highlight-pill">📊 Climate Risk Scoring</span>
+        </div>
+        <!-- Partner logos -->
+        <div class="logo-bar" style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 20px; margin-bottom: 8px;">
+            <div class="logo-img-wrapper" style="background: white; padding: 10px; border-radius: 10px;">
+                <img src="IMI kol logo.png" alt="IMI Kolkata" class="logo-img" style="height: 50px; width: auto; object-fit: contain;">
+            </div>
+            <div class="logo-img-wrapper" style="background: white; padding: 10px; border-radius: 10px;">
+                <img src="IISERK logo.png" alt="IISER Kolkata" class="logo-img" style="height: 50px; width: auto; object-fit: contain;">
+            </div>
+            <div class="logo-img-wrapper" style="background: white; padding: 10px; border-radius: 10px;">
+                <img src="RISE logo.png" alt="RISE" class="logo-img" style="height: 50px; width: auto; object-fit: contain;">
+            </div>
+        </div>
+        <div style="font-size: var(--font-body); color: var(--text-primary); margin-top: var(--space-sm); font-weight: 700; letter-spacing: 0.2px;">
+            <strong>Team iFiNN</strong> · Democratizing Climate-Aligned Capital
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: Problem -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">The Climate Finance Gap</span>
+    </div>
+    <div class="slide-body" style="padding-top: 28px;">
+        <div class="section-header" style="margin-bottom: 18px;">
+            <h2>The $130 Trillion Problem: Capital Misalignment</h2>
+            <p>Retail investors lack tools to participate in the greatest capital reallocation in history—the climate transition.</p>
+        </div>
+        <div class="grid-2" style="gap: 24px;">
+            <div>
+                <div class="col-header" style="border-color: var(--error); margin-bottom: var(--space-sm);">🚫 Current Pain Points</div>
+                <ul class="feature-list" style="gap: 10px; display: flex; flex-direction: column;">
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>ESG data opacity</strong><br><span class="text-muted">Greenwashing is rampant; retail investors cannot verify sustainability claims.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>No climate risk tools</strong><br><span class="text-muted">Transition risks (stranded assets, carbon pricing) are invisible to average traders.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>Fragmented green finance data</strong><br><span class="text-muted">Carbon credits, ESG scores, and climate news live in separate silos.</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-header" style="border-color: var(--warning); margin-bottom: var(--space-sm);">⚠️ Market Consequences</div>
+                <ul class="feature-list" style="gap: 10px; display: flex; flex-direction: column;">
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>Capital flows to brown assets</strong><br><span class="text-muted">Without tools, retail money funds high-emission companies by default.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>Missed green alpha</strong><br><span class="text-muted">Clean energy and carbon markets outperform, but retail can't access signals.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon error">X</span>
+                        <div><strong>Institutional lock-out</strong><br><span class="text-muted">ESG analytics cost $50K+/year, excluding 99% of investors.</span></div>
+                    </li>
+                </ul>
+                <div class="info-box" style="margin-top: 14px; padding: 14px;">
+                    <h3 style="color: var(--accent-primary);">🌍 The Gap We Address</h3>
+                    <p class="text-secondary" style="font-size: var(--font-body);">iFiNN democratizes climate finance intelligence—giving every investor AI tools to align capital with planetary goals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">2 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 3: Market Size -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">The Sustainable Finance Opportunity</span>
+    </div>
+    <div class="slide-body" style="padding-top: 20px; padding-left: 40px; padding-right: 40px;">
+        <div class="section-header" style="margin-bottom: 10px;">
+            <h2>Market Sizing: The Climate Capital Wave</h2>
+            <p>Global sustainable finance is accelerating. iFiNN captures retail participation in this historic transition.</p>
+        </div>
+        <div class="grid-3" style="margin-bottom: 12px;">
+            <div class="stat-box" style="padding: 14px 12px; border-left: 3px solid var(--accent-tertiary);">
+                <div class="stat-value" style="font-size: 26px; color: var(--accent-tertiary);">$40T+</div>
+                <div class="stat-label" style="font-size: 11px; font-weight: bold; margin-top: 6px;">TOTAL ADDRESSABLE MARKET</div>
+                <div style="font-size: 10px; margin-top: 4px; color: var(--text-secondary);">Global ESG AUM (2024, Bloomberg)</div>
+            </div>
+            <div class="stat-box" style="padding: 14px 12px; border-left: 3px solid var(--accent-primary);">
+                <div class="stat-value" style="font-size: 26px; color: var(--accent-primary);">$8.4T</div>
+                <div class="stat-label" style="font-size: 11px; font-weight: bold; margin-top: 6px;">SERVICEABLE AVAILABLE MARKET</div>
+                <div style="font-size: 10px; margin-top: 4px; color: var(--text-secondary);">Asia-Pacific ESG Investment Market</div>
+            </div>
+            <div class="stat-box" style="padding: 14px 12px; border-left: 3px solid var(--warning);">
+                <div class="stat-value" style="font-size: 26px; color: var(--warning);">₹2,500 Cr</div>
+                <div class="stat-label" style="font-size: 11px; font-weight: bold; margin-top: 6px;">SERVICEABLE OBTAINABLE MARKET</div>
+                <div style="font-size: 10px; margin-top: 4px; color: var(--text-secondary);">India Retail ESG Analytics (Year 3)</div>
+            </div>
+        </div>
+        <div class="grid-2" style="gap: 14px;">
+            <div class="card" style="padding: 16px;">
+                <div class="card-title" style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 10px;">🌱 Green Finance Growth Drivers</div>
+                <div class="grid-2" style="gap: 10px; margin-bottom: 8px;">
+                    <div style="text-align: center;">
+                        <div class="stat-value" style="font-size: 22px;">18.5%</div>
+                        <div class="stat-label" style="font-size: 9px;">ESG AUM CAGR (2024-30)</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="stat-value" style="font-size: 22px;">$1.7T</div>
+                        <div class="stat-label" style="font-size: 9px;">Green Bonds Issued (2024)</div>
+                    </div>
+                </div>
+                <div style="font-size: 10px; color: var(--text-secondary); line-height: 1.4;">
+                    <strong>Target Users:</strong> Climate-conscious retail investors, ESG-focused advisors, and impact-driven institutions.
+                </div>
+            </div>
+            <div class="card" style="padding: 16px;">
+                <div class="card-title" style="font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 10px;">⚡ Why Now</div>
+                <div style="font-size: 11px; color: var(--text-secondary); display: grid; gap: 5px;">
+                    <div>🌍 <strong>Regulatory push:</strong> SEBI BRSR mandates, EU SFDR, SEC climate disclosure</div>
+                    <div>📈 <strong>Performance:</strong> MSCI ESG Leaders outperforming by 2.4% annually</div>
+                    <div>🔥 <strong>Climate urgency:</strong> COP commitments driving capital reallocation</div>
+                    <div>💡 <strong>AI readiness:</strong> LLMs can parse ESG reports at scale</div>
+                </div>
+            </div>
+        </div>
+        <div class="gold-box" style="margin-top: 10px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 12px;"><strong>India Opportunity:</strong> 150M+ demat accounts, only 3% in ESG products. SEBI mandating BRSR for top 1000 companies.</div>
+                <div style="font-size: 16px; font-weight: 700; color: var(--warning);">30x Growth Runway</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">3 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 4: Solution -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Our Climate Finance Solution</span>
+    </div>
+    <div class="slide-body" style="padding-top: 18px;">
+        <div class="section-header" style="margin-bottom: 12px;">
+            <h2>AI-Powered Sustainable Investment Intelligence</h2>
+            <p>One platform to screen, analyze, and deploy capital toward climate-positive outcomes with institutional-grade AI.</p>
+        </div>
+        <div class="flow-container" style="margin-bottom: 14px;">
+            <div class="flow-step" style="padding: 12px 8px;">
+                <div class="flow-number">1</div>
+                <div class="flow-label">Ingest ESG + Climate Data</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="padding: 12px 8px;">
+                <div class="flow-number">2</div>
+                <div class="flow-label">AI Climate Risk Scoring</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="padding: 12px 8px;">
+                <div class="flow-number">3</div>
+                <div class="flow-label">Green Portfolio Signals</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="padding: 12px 8px;">
+                <div class="flow-number">4</div>
+                <div class="flow-label">Deploy + Track Impact</div>
+            </div>
+        </div>
+        <div class="grid-2" style="margin-bottom: 12px; gap: 16px;">
+            <div>
+                <ul class="feature-list" style="gap: 8px; display: flex; flex-direction: column;">
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>ESG Transparency Engine</strong><br><span class="text-muted">AI parses sustainability reports, detects greenwashing, and scores authenticity.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Carbon Footprint Analytics</strong><br><span class="text-muted">Track Scope 1/2/3 emissions intensity for any stock or portfolio.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Climate Risk Alerts</strong><br><span class="text-muted">Transition risk scores for stranded assets, regulatory exposure, and physical risks.</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="feature-list" style="gap: 8px; display: flex; flex-direction: column;">
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Green Signal Generation</strong><br><span class="text-muted">Buy/sell signals for clean energy, carbon credits, and sustainable ETFs.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>SDG Alignment Scoring</strong><br><span class="text-muted">Map investments to UN Sustainable Development Goals with impact metrics.</span></div>
+                    </li>
+                    <li>
+                        <span class="list-icon success">✓</span>
+                        <div><strong>Climate News Sentiment</strong><br><span class="text-muted">Real-time NLP on climate policy, extreme weather, and green tech news.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Climate Intelligence Stack Diagram -->
+        <div class="card" style="padding: 14px;">
+            <div class="card-title" style="font-size: 14px; margin-bottom: 10px; text-align: center;">🌍 iFiNN Climate Intelligence Architecture</div>
+            <svg width="100%" height="130" viewBox="0 0 1100 130" xmlns="http://www.w3.org/2000/svg">
+                <!-- Data Layer -->
+                <rect x="10" y="10" width="200" height="110" rx="8" fill="#12241a" stroke="#1f3d2a"/>
+                <text x="110" y="30" fill="#10b981" font-size="11" font-weight="600" text-anchor="middle">DATA SOURCES</text>
+                <text x="110" y="50" fill="#a1a1aa" font-size="9" text-anchor="middle">ESG Reports • Carbon Data</text>
+                <text x="110" y="65" fill="#a1a1aa" font-size="9" text-anchor="middle">Climate News • Green Bonds</text>
+                <text x="110" y="80" fill="#a1a1aa" font-size="9" text-anchor="middle">Regulatory Filings • SDG Data</text>
+                <text x="110" y="100" fill="#71717a" font-size="8" text-anchor="middle">CDP • TCFD • SASB • GRI</text>
+                
+                <!-- Arrow -->
+                <path d="M220 65 L260 65" stroke="#10b981" stroke-width="2" marker-end="url(#arrow1)"/>
+                
+                <!-- AI Engine -->
+                <rect x="270" y="15" width="260" height="100" rx="8" fill="url(#greenGrad2)" stroke="#34d399"/>
+                <text x="400" y="40" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">iFiNN AI ENGINE</text>
+                <text x="400" y="60" fill="#d1fae5" font-size="9" text-anchor="middle">Climate NLP • ESG Scoring • Risk Models</text>
+                <text x="400" y="78" fill="#d1fae5" font-size="9" text-anchor="middle">Carbon Analytics • SDG Mapping</text>
+                <text x="400" y="96" fill="#a7f3d0" font-size="8" text-anchor="middle">No-Code Model Tuning</text>
+                
+                <!-- Arrow -->
+                <path d="M540 65 L580 65" stroke="#10b981" stroke-width="2" marker-end="url(#arrow1)"/>
+                
+                <!-- Output Layer -->
+                <rect x="590" y="10" width="160" height="50" rx="6" fill="#12241a" stroke="#3F7E44"/>
+                <text x="670" y="30" fill="#34d399" font-size="10" font-weight="600" text-anchor="middle">🌱 GREEN SIGNALS</text>
+                <text x="670" y="46" fill="#a1a1aa" font-size="8" text-anchor="middle">ESG Buy/Sell • Clean Energy</text>
+                
+                <rect x="590" y="70" width="160" height="50" rx="6" fill="#12241a" stroke="#f59e0b"/>
+                <text x="670" y="90" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">📊 CLIMATE ALPHA</text>
+                <text x="670" y="106" fill="#a1a1aa" font-size="8" text-anchor="middle">Carbon Credits • Transition Plays</text>
+                
+                <!-- Final Output -->
+                <path d="M760 65 L800 65" stroke="#10b981" stroke-width="2" marker-end="url(#arrow1)"/>
+                
+                <rect x="810" y="20" width="180" height="90" rx="8" fill="#1a2e22" stroke="#10b981" stroke-width="2"/>
+                <text x="900" y="45" fill="#10b981" font-size="11" font-weight="700" text-anchor="middle">IMPACT DASHBOARD</text>
+                <text x="900" y="65" fill="#a1a1aa" font-size="9" text-anchor="middle">Portfolio Carbon Footprint</text>
+                <text x="900" y="82" fill="#a1a1aa" font-size="9" text-anchor="middle">SDG Contribution Score</text>
+                <text x="900" y="99" fill="#34d399" font-size="8" text-anchor="middle">Real-time Impact Tracking</text>
+                
+                <defs>
+                    <linearGradient id="greenGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#059669"/>
+                        <stop offset="100%" stop-color="#10b981"/>
+                    </linearGradient>
+                    <marker id="arrow1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">4 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 5: GTM + Business Model for Sustainable Finance -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Business Model &amp; Go-to-Market</span>
+    </div>
+    <div class="slide-body" style="padding-top: 20px;">
+        <div class="section-header" style="margin-bottom: 12px;">
+            <h2>Monetizing Climate-Aligned Capital Intelligence</h2>
+            <p>Subscription tiers, impact-focused partnerships, and a green strategy marketplace.</p>
+        </div>
+        <div class="grid-4" style="gap: 10px; margin-bottom: 12px;">
+            <div class="stat-box" style="padding: 12px; border-top: 3px solid #3F7E44;"><div class="card-title" style="font-size: 11px;">🌱 ESG Screener</div></div>
+            <div class="stat-box" style="padding: 12px; border-top: 3px solid #0A97D9;"><div class="card-title" style="font-size: 11px;">📊 Carbon Analytics</div></div>
+            <div class="stat-box" style="padding: 12px; border-top: 3px solid #FCC30B;"><div class="card-title" style="font-size: 11px;">⚡ Climate Signals</div></div>
+            <div class="stat-box" style="padding: 12px; border-top: 3px solid #E5243B;"><div class="card-title" style="font-size: 11px;">🏆 Green Leaderboard</div></div>
+        </div>
+        <div class="grid-2" style="gap: 16px;">
+            <div class="card" style="padding: 18px;">
+                <div class="card-title" style="font-size: 16px; margin-bottom: 12px;">💳 Subscription Tiers</div>
+                <div class="arch-layer green" style="padding: 12px; margin-bottom: 10px;">
+                    <div class="arch-layer-title" style="font-size: 13px;">🌱 Free Tier</div>
+                    <div class="arch-layer-desc" style="font-size: 11px;">Basic ESG scores, 5 stock screening/month, climate news feed</div>
+                </div>
+                <div class="arch-layer blue" style="padding: 12px; margin-bottom: 10px;">
+                    <div class="arch-layer-title" style="font-size: 13px;">🌍 Climate Pro (₹499/mo)</div>
+                    <div class="arch-layer-desc" style="font-size: 11px;">Full ESG analytics, carbon footprint tracking, green signals</div>
+                </div>
+                <div class="arch-layer purple" style="padding: 12px;">
+                    <div class="arch-layer-title" style="font-size: 13px;">⚡ Impact Elite (₹1,999/mo)</div>
+                    <div class="arch-layer-desc" style="font-size: 11px;">Custom AI models, SDG mapping, institutional-grade APIs</div>
+                </div>
+            </div>
+            <div class="card" style="padding: 18px;">
+                <div class="card-title" style="font-size: 16px; margin-bottom: 12px;">🚀 Go-to-Market Phases</div>
+                <ul class="feature-list" style="gap: 10px; display: flex; flex-direction: column;">
+                    <li><span class="list-icon success" style="width: 26px; height: 26px; font-size: 11px;">P1</span><div style="font-size: 12px;"><strong>Impact Fund Pilots:</strong> Partner with ESG-focused funds and climate VCs for validation.</div></li>
+                    <li><span class="list-icon success" style="width: 26px; height: 26px; font-size: 11px;">P2</span><div style="font-size: 12px;"><strong>Retail Climate Community:</strong> Sustainable investing influencers drive adoption.</div></li>
+                    <li><span class="list-icon success" style="width: 26px; height: 26px; font-size: 11px;">P3</span><div style="font-size: 12px;"><strong>Green Marketplace:</strong> Creators publish ESG strategies, earn from subscriber usage.</div></li>
+                </ul>
+            </div>
+        </div>
+        <div class="grid-2" style="margin-top: 12px; gap: 12px;">
+            <div class="info-box" style="padding: 14px;">
+                <h3 style="font-size: 14px;">📈 Unit Economics</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+                    <div style="font-size: 12px; color: var(--text-secondary);">LTV/CAC: <strong style="color: var(--accent-primary);">9.2x</strong></div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Blended CAC: <strong style="color: var(--accent-primary);">₹90</strong></div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Gross Margin: <strong style="color: var(--accent-primary);">78%</strong></div>
+                </div>
+            </div>
+            <div class="gold-box" style="padding: 14px;">
+                <h3 style="font-size: 14px;">🌍 Impact Partnerships</h3>
+                <p class="text-secondary" style="font-size: 11px;">Revenue share with ESG data providers, carbon registries, and impact measurement platforms.</p>
+            </div>
+        </div>
+        <div class="info-box" style="margin-top: 10px; padding: 12px; border-left: 3px solid var(--accent-primary);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="font-size: 13px; margin-bottom: 4px;">🛡️ Defensibility: Climate Data Moat</h3>
+                    <p class="text-secondary" style="font-size: 11px;">Proprietary ESG scoring models trained on verified sustainability data. Network effects from community-validated green strategies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">5 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 6: Sustainable Finance & Climate Economics -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Sustainable Finance & Climate Impact</span>
+    </div>
+    <div class="slide-body" style="padding-top: 16px;">
+        <div class="section-header" style="margin-bottom: 10px;">
+            <h2 style="font-size: 26px;">UN SDG Alignment & Climate Intelligence</h2>
+            <p style="font-size: 12px;">iFiNN maps investments to global sustainability goals with AI-powered climate analytics.</p>
+        </div>
+        
+        <div class="grid-2" style="gap: 16px; margin-bottom: 10px;">
+            <!-- Left Column: UN SDG Alignment -->
+            <div>
+                <div class="sub-header" style="font-size: 14px; margin-bottom: 8px; color: var(--accent-primary);">🌍 UN SDG Alignment</div>
+                <div class="card" style="padding: 12px; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+                        <!-- SDG Icons as colored boxes -->
+                        <div style="width: 38px; height: 38px; background: #E5243B; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 10px; flex-direction: column; line-height: 1;">
+                            <span style="font-size: 13px;">7</span>
+                            <span style="font-size: 5px;">ENERGY</span>
+                        </div>
+                        <div style="width: 38px; height: 38px; background: #FCC30B; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 10px; flex-direction: column; line-height: 1;">
+                            <span style="font-size: 13px;">8</span>
+                            <span style="font-size: 5px;">WORK</span>
+                        </div>
+                        <div style="width: 38px; height: 38px; background: #FD6925; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 10px; flex-direction: column; line-height: 1;">
+                            <span style="font-size: 13px;">9</span>
+                            <span style="font-size: 5px;">INDUSTRY</span>
+                        </div>
+                        <div style="width: 38px; height: 38px; background: #BF8B2E; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 10px; flex-direction: column; line-height: 1;">
+                            <span style="font-size: 13px;">12</span>
+                            <span style="font-size: 5px;">CONSUME</span>
+                        </div>
+                        <div style="width: 38px; height: 38px; background: #3F7E44; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 10px; flex-direction: column; line-height: 1;">
+                            <span style="font-size: 13px;">13</span>
+                            <span style="font-size: 5px;">CLIMATE</span>
+                        </div>
+                    </div>
+                    <ul class="feature-list" style="gap: 4px; display: flex; flex-direction: column; font-size: 11px;">
+                        <li style="padding: 3px 0;"><span class="list-icon success" style="width: 18px; height: 18px; font-size: 9px;">✓</span><div><strong>SDG 7:</strong> Clean energy screening & renewable ETF signals</div></li>
+                        <li style="padding: 3px 0;"><span class="list-icon success" style="width: 18px; height: 18px; font-size: 9px;">✓</span><div><strong>SDG 13:</strong> Carbon credit analysis & climate risk scoring</div></li>
+                        <li style="padding: 3px 0;"><span class="list-icon success" style="width: 18px; height: 18px; font-size: 9px;">✓</span><div><strong>SDG 9:</strong> Green infrastructure & sustainable industry signals</div></li>
+                    </ul>
+                </div>
+                
+                <!-- Market Size -->
+                <div class="gold-box" style="padding: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--warning); margin-bottom: 2px;">Global Climate Finance</div>
+                            <div style="font-size: 22px; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">$1.3T</div>
+                            <div style="font-size: 9px; color: var(--text-muted);">Annual flows (CPI 2024)</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary); margin-bottom: 2px;">Required by 2030</div>
+                            <div style="font-size: 20px; font-weight: 700; color: var(--accent-secondary);">$4.3T/yr</div>
+                            <div style="font-size: 9px; color: var(--text-muted);">IPCC estimate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Application Flow Diagram -->
+            <div>
+                <div class="sub-header" style="font-size: 14px; margin-bottom: 8px; color: var(--accent-primary);">📊 iFiNN Climate Intelligence Stack</div>
+                <div class="card" style="padding: 10px;">
+                    <!-- Flow Diagram - Compact -->
+                    <svg width="100%" height="170" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Data Sources Layer -->
+                        <rect x="10" y="5" width="320" height="35" rx="6" fill="#12241a" stroke="#1f3d2a"/>
+                        <text x="170" y="18" fill="#10b981" font-size="8" font-weight="600" text-anchor="middle">DATA INGESTION LAYER</text>
+                        <text x="60" y="32" fill="#a1a1aa" font-size="7" text-anchor="middle">Carbon Data</text>
+                        <text x="130" y="32" fill="#a1a1aa" font-size="7" text-anchor="middle">ESG Scores</text>
+                        <text x="200" y="32" fill="#a1a1aa" font-size="7" text-anchor="middle">Climate News</text>
+                        <text x="280" y="32" fill="#a1a1aa" font-size="7" text-anchor="middle">Green Bonds</text>
+                        
+                        <!-- Arrow -->
+                        <path d="M170 45 L170 55" stroke="#10b981" stroke-width="2"/>
+                        
+                        <!-- AI Processing -->
+                        <rect x="60" y="60" width="220" height="38" rx="6" fill="url(#greenGrad)" stroke="#34d399"/>
+                        <text x="170" y="76" fill="#fff" font-size="9" font-weight="700" text-anchor="middle">iFiNN AI ENGINE</text>
+                        <text x="170" y="89" fill="#d1fae5" font-size="7" text-anchor="middle">Climate Risk • ESG Sentiment • Green Portfolio Optimization</text>
+                        
+                        <!-- Arrow -->
+                        <path d="M170 103 L170 115" stroke="#10b981" stroke-width="2"/>
+                        
+                        <!-- Output Layer -->
+                        <g transform="translate(20, 120)">
+                            <rect x="0" y="0" width="95" height="38" rx="5" fill="#12241a" stroke="#1f3d2a"/>
+                            <text x="47" y="15" fill="#fbbf24" font-size="8" font-weight="600" text-anchor="middle">🌱 Green Signals</text>
+                            <text x="47" y="28" fill="#a1a1aa" font-size="6" text-anchor="middle">Buy/Sell ESG stocks</text>
+                        </g>
+                        <g transform="translate(122, 120)">
+                            <rect x="0" y="0" width="95" height="38" rx="5" fill="#12241a" stroke="#1f3d2a"/>
+                            <text x="47" y="15" fill="#34d399" font-size="8" font-weight="600" text-anchor="middle">📈 Climate Alpha</text>
+                            <text x="47" y="28" fill="#a1a1aa" font-size="6" text-anchor="middle">Carbon credit plays</text>
+                        </g>
+                        <g transform="translate(224, 120)">
+                            <rect x="0" y="0" width="95" height="38" rx="5" fill="#12241a" stroke="#1f3d2a"/>
+                            <text x="47" y="15" fill="#60a5fa" font-size="8" font-weight="600" text-anchor="middle">⚡ Risk Scores</text>
+                            <text x="47" y="28" fill="#a1a1aa" font-size="6" text-anchor="middle">Transition risk alerts</text>
+                        </g>
+                        
+                        <!-- Gradient Definition -->
+                        <defs>
+                            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#10b981"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Row: Key Use Cases -->
+        <div class="grid-3" style="gap: 10px; margin-bottom: 10px;">
+            <div class="feature-card" style="padding: 10px; border-left: 3px solid #3F7E44;">
+                <div style="font-size: 16px; margin-bottom: 4px;">🏭</div>
+                <div class="card-title" style="font-size: 12px; color: var(--accent-secondary);">Carbon Market Intelligence</div>
+                <div class="card-text" style="font-size: 10px;">EU ETS & voluntary carbon credit pricing signals.</div>
+            </div>
+            <div class="feature-card" style="padding: 10px; border-left: 3px solid #0A97D9;">
+                <div style="font-size: 16px; margin-bottom: 4px;">💚</div>
+                <div class="card-title" style="font-size: 12px; color: var(--accent-secondary);">ESG Portfolio Screening</div>
+                <div class="card-text" style="font-size: 10px;">AI screening by Scope 1/2/3 emissions intensity.</div>
+            </div>
+            <div class="feature-card" style="padding: 10px; border-left: 3px solid #FCC30B;">
+                <div style="font-size: 16px; margin-bottom: 4px;">⚡</div>
+                <div class="card-title" style="font-size: 12px; color: var(--accent-secondary);">Clean Energy Alpha</div>
+                <div class="card-text" style="font-size: 10px;">Solar, wind, hydrogen sector signals & subsidy tracking.</div>
+            </div>
+        </div>
+        
+        <!-- Why This Matters - Compact -->
+        <div class="info-box" style="padding: 10px; border-left: 3px solid var(--accent-primary);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <div style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Why This Matters for Scale</div>
+                    <div style="font-size: 10px; color: var(--text-secondary);">Climate finance is the largest capital reallocation in history. iFiNN democratizes access to this transition economy.</div>
+                </div>
+                <div style="text-align: right; padding-left: 16px; flex-shrink: 0;">
+                    <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase;">Launch Ready</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--accent-primary);">Q3 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">6 / 7</span>
+    </div>
+</div>
+
+<!-- SLIDE 7: Team & Performance -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">iFiNN</span>
+        <span class="slide-title">Team, Validation &amp; Impact Readiness</span>
+    </div>
+    <div class="slide-body" style="padding-top: 20px;">
+        <div class="section-header" style="margin-bottom: 10px;">
+            <h2>Funding, Recognition &amp; Climate Impact Execution</h2>
+            <p>Validated by ecosystem partners and ready to scale sustainable finance intelligence.</p>
+        </div>
+        <div class="grid-2" style="margin-bottom: 10px; gap: 16px;">
+            <div>
+                <div class="sub-header" style="font-size: 16px; margin-bottom: 10px;">🌱 Funding &amp; Partnerships</div>
+                <div class="card" style="padding: 14px; margin-bottom: 10px;">
+                    <div class="card-title" style="font-size: 16px; color: var(--accent-primary);">Team iFiNN</div>
+                    <div class="card-text" style="font-size: 12px; line-height: 1.4;">Climate finance engineers building AI tools to democratize sustainable investing for retail investors.</div>
+                </div>
+                <div class="grid-2" style="gap: 10px;">
+                    <div class="card" style="padding: 10px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: #fff; border-radius: 6px; padding: 5px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; height: 44px; min-width: 90px;">
+                            <img src="Meity  logo.jpeg" alt="MeitY Startup Hub" style="max-height: 34px; max-width: 130px; object-fit: contain;">
+                        </div>
+                        <div style="font-size: 11px; color: var(--text-secondary);"><strong>Funded by MeitY</strong></div>
+                    </div>
+                    <div class="card" style="padding: 10px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: #fff; border-radius: 6px; padding: 5px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; height: 44px; min-width: 90px;">
+                            <img src="TurningIdeas Logo.png" alt="Turning Ideas Ventures" style="max-height: 34px; max-width: 110px; object-fit: contain;">
+                        </div>
+                        <div style="font-size: 11px; color: var(--text-secondary);"><strong>Turning Ideas Ventures</strong></div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px; text-align: center; margin-top: 8px; display: flex; flex-direction: column; align-items: center;">
+                    <div style="background: #fff; border-radius: 6px; padding: 5px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; height: 44px; min-width: 90px;">
+                        <img src="Freeflow Ventures.png" alt="FreeFlow Ventures" style="max-height: 36px; max-width: 90px; object-fit: contain;">
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-secondary);"><strong>FreeFlow Ventures</strong></div>
+                </div>
+                <div class="card" style="padding: 10px; margin-top: 8px; display: flex; align-items: center; gap: 10px; text-align: left;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=https://synapse-iiserk.github.io/" alt="Scan for Website" style="height: 70px; width: 70px; border-radius: 6px; background: #fff; padding: 4px; flex-shrink: 0;">
+                    <div>
+                        <div class="main-logo" style="font-size: 22px; margin: 0; line-height: 1.1; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; letter-spacing: -0.8px;">Thank You</div>
+                        <div class="tagline" style="font-size: 11px; margin: 4px 0 0 0; color: var(--text-muted);">Open for Q&amp;A · Scan QR for iFiNN</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="sub-header" style="font-size: 16px; margin-bottom: 10px;">🏆 Achievements</div>
+                <div class="card" style="padding: 12px; margin-bottom: 10px;">
+                    <ul class="feature-list" style="gap: 6px; display: flex; flex-direction: column;">
+                        <li style="padding: 4px 0;">
+                            <span class="list-icon success" style="width: 22px; height: 22px; font-size: 10px;">✓</span>
+                            <div style="font-size: 12px;"><strong>IIT Madras E-Summit Finalist</strong><br><span class="text-muted" style="font-size: 10px;">Top startup teams in national competition.</span></div>
+                        </li>
+                        <li style="padding: 4px 0;">
+                            <span class="list-icon success" style="width: 22px; height: 22px; font-size: 10px;">✓</span>
+                            <div style="font-size: 12px;"><strong>IIT Delhi E-Summit Finalist</strong><br><span class="text-muted" style="font-size: 10px;">National entrepreneurship showcase.</span></div>
+                        </li>
+                        <li style="padding: 4px 0;">
+                            <span class="list-icon success" style="width: 22px; height: 22px; font-size: 10px;">✓</span>
+                            <div style="font-size: 12px;"><strong>Presidency University E-Summit</strong><br><span class="text-muted" style="font-size: 10px;">2nd Runner-Up in pitch competition.</span></div>
+                        </li>
+                        <li style="padding: 4px 0;">
+                            <span class="list-icon success" style="width: 22px; height: 22px; font-size: 10px;">✓</span>
+                            <div style="font-size: 12px;"><strong>IMI Bhubaneswar Ideathon</strong><br><span class="text-muted" style="font-size: 10px;">Selected finalist for impact innovation.</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card" style="padding: 10px; text-align: center;">
+                    <div style="display: flex; justify-content: center; gap: 12px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
+                        <div style="background: #fff; border-radius: 6px; padding: 5px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; min-width: 46px; height: 46px;">
+                            <img src="Presidency_University,_Kolkata_Logo.svg" alt="Presidency University" style="max-height: 36px; max-width: 36px; object-fit: contain;">
+                        </div>
+                        <div style="background: #fff; border-radius: 6px; padding: 5px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; min-width: 46px; height: 46px;">
+                            <img src="IIT D logo.png" alt="IIT Delhi" style="max-height: 36px; max-width: 36px; object-fit: contain;">
+                        </div>
+                        <div style="background: #fff; border-radius: 6px; padding: 5px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; min-width: 46px; height: 46px;">
+                            <img src="IITM logo.png" alt="IIT Madras" style="max-height: 36px; max-width: 36px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div style="font-size: 10px; color: var(--text-secondary);">Validated by IIT Delhi, IIT Madras & Presidency University competitions.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-footer">
+        <span>Team iFiNN · EarthOn Greenovation Challenge</span>
+        <span class="page-number">7 / 7</span>
+    </div>
+</div>
+
+<script>
+    window.onbeforeprint = function() {
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.style.margin = '0';
+            slide.style.boxShadow = 'none';
+        });
+    };
+</script>
+
+</body>
+</html>
