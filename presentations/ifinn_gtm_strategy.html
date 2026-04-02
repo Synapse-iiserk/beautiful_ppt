@@ -36,6 +36,8 @@
 
         /* ── Header / Footer ── */
         .ph{height:46px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--bdr)}
+        .ph-brand{display:flex;align-items:center;gap:8px}
+        .ph-logo-img{height:24px;width:auto;display:block;border-radius:4px;background:#fff;padding:2px}
         .ph-logo{font-size:15px;font-weight:900;letter-spacing:.6px;background:var(--acc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .ph-section{font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--txt3)}
         .pf{height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-top:1px solid var(--bdr);font-size:9px;color:var(--txt3);margin-top:auto}
@@ -164,11 +166,8 @@
 
     <!-- HEADER -->
     <div class="ph">
-        <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;flex-shrink:0">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="50%" stop-color="#10b981"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs><ellipse cx="24" cy="24" rx="20" ry="14" fill="none" stroke="url(#lg1)" stroke-width="2.5"/><circle cx="24" cy="24" r="8" fill="none" stroke="url(#lg1)" stroke-width="2"/><circle cx="24" cy="24" r="4" fill="url(#lg1)"/><circle cx="8" cy="16" r="2.5" fill="url(#lg1)"/><circle cx="8" cy="32" r="2.5" fill="url(#lg1)"/><circle cx="40" cy="16" r="2.5" fill="url(#lg1)"/><circle cx="40" cy="32" r="2.5" fill="url(#lg1)"/><path d="M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28" stroke="url(#lg1)" stroke-width="1.5" stroke-linecap="round"/><path d="M21 25 L23 23 L25 26 L27 22" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-            <span class="ph-logo">iFINN</span>
+        <div class="ph-brand">
+            <img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo" class="ph-logo-img">
         </div>
         <span class="ph-section">Go-to-Market Strategy &mdash; Market Sizing &amp; Segment Priority</span>
     </div>
@@ -180,7 +179,7 @@
         <div class="band" style="display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
             <div>
                 <div style="font-size:18px;font-weight:900;color:#fff;line-height:1.1">Go-to-Market Strategy <span style="background:var(--acc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">2026 &ndash; 2028</span></div>
-                <div style="font-size:11px;color:var(--txt2);margin-top:4px">Enterprise-first &rarr; Corporate scale &rarr; Mass-market &mdash; India FinTech &amp; Institutional AI</div>
+                <div style="font-size:11px;color:var(--txt2);margin-top:4px">Enterprise-first &rarr; Corporate scale &rarr; Mass-market &mdash; Global FinTech &amp; Institutional AI</div>
             </div>
             <div style="display:flex;gap:6px;flex-shrink:0">
                 <span class="pill">iFINN</span>
@@ -193,18 +192,18 @@
         <div class="g3c" style="flex-shrink:0">
             <div class="stat-chip" style="background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.22)">
                 <div class="stat-lbl" style="color:var(--txt3)">Total Addressable Market</div>
-                <div class="stat-val" style="background:linear-gradient(135deg,#00ff88,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">&#8377;12,000 Cr</div>
-                <div class="stat-sub">India retail algo-trading + institutional AI analytics<br><span style="font-size:9px;color:var(--txt3)">IBEF / SEBI estimate &mdash; FY28</span></div>
+                <div class="stat-val" style="background:linear-gradient(135deg,#00ff88,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">$120B</div>
+                <div class="stat-sub">Global retail algo-trading + institutional AI analytics<br><span style="font-size:9px;color:var(--txt3)">IBEF / SEBI estimate &mdash; FY28</span></div>
             </div>
             <div class="stat-chip" style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.28)">
                 <div class="stat-lbl" style="color:var(--txt3)">Serviceable Addressable Market</div>
-                <div class="stat-val" style="color:#10b981">&#8377;2,400 Cr</div>
-                <div class="stat-sub">Active F&amp;O traders + quant researchers willing to pay<br><span style="font-size:9px;color:var(--txt3)">20% of TAM &mdash; digital-native, India-reachable</span></div>
+                <div class="stat-val" style="color:#10b981">$24B</div>
+                <div class="stat-sub">Active F&amp;O traders + quant researchers willing to pay<br><span style="font-size:9px;color:var(--txt3)">20% of TAM &mdash; digital-native, globally reachable</span></div>
             </div>
             <div class="stat-chip" style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.28)">
                 <div class="stat-lbl" style="color:var(--txt3)">Serviceable Obtainable Market</div>
-                <div class="stat-val" style="color:var(--goldb)">&#8377;156 Cr</div>
-                <div class="stat-sub">0.1% of Demat holders at &#8377;1,200/mo &mdash; FY28 ARR target<br><span style="font-size:9px;color:var(--txt3)">~13,000 paid subscribers, 6.5% SAM capture</span></div>
+                <div class="stat-val" style="color:var(--goldb)">$1.56B</div>
+                <div class="stat-sub">0.1% of Demat holders at $1,200/mo &mdash; FY28 ARR target<br><span style="font-size:9px;color:var(--txt3)">~13,000 paid subscribers, 6.5% SAM capture</span></div>
             </div>
         </div>
 
@@ -222,8 +221,8 @@
                     <circle cx="65" cy="65" r="52" fill="none" stroke="#00b4d8" stroke-width="26" stroke-dasharray="32.7 326.7" stroke-dashoffset="-186.2"/>
                     <circle cx="65" cy="65" r="52" fill="none" stroke="#f59e0b" stroke-width="26" stroke-dasharray="26.1 326.7" stroke-dashoffset="-218.9"/>
                     <circle cx="65" cy="65" r="33" fill="#0d1f13"/>
-                    <text x="65" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4b7a5e" font-weight="600">INDIA TAM</text>
-                    <text x="65" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#10b981" font-weight="900">&#8377;12K Cr</text>
+                    <text x="65" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4b7a5e" font-weight="600">GLOBAL TAM</text>
+                    <text x="65" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#10b981" font-weight="900">$120B</text>
                 </svg>
                 <div style="margin-top:10px;display:flex;flex-direction:column;gap:4px">
                     <div style="display:flex;align-items:center;gap:7px"><div style="width:10px;height:10px;border-radius:2px;background:#10b981;flex-shrink:0"></div><div style="font-size:10px;color:#e8f5e9;font-weight:600">Algo / Quant Trading<span style="color:var(--txt3);font-weight:400"> &nbsp;35%</span></div></div>
@@ -258,7 +257,7 @@
 
                     <!-- TAM label — top-centre, above the circle (y=24 is top edge; label at y=10) -->
                     <text x="105" y="8" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e" font-weight="700">TAM</text>
-                    <text x="105" y="19" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#00ff88" font-weight="900">&#8377;12,000 Cr</text>
+                    <text x="105" y="19" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#00ff88" font-weight="900">$120B</text>
                     <!-- small leader tick from top of circle -->
                     <line x1="105" y1="24" x2="105" y2="21" stroke="rgba(0,255,136,.35)" stroke-width="1"/>
 
@@ -267,16 +266,16 @@
                     <line x1="151" y1="105" x2="178" y2="105" stroke="rgba(16,185,129,.4)" stroke-width="1" stroke-dasharray="3 2"/>
                     <circle cx="151" cy="105" r="2" fill="#10b981"/>
                     <text x="180" y="102" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e" font-weight="700">SAM</text>
-                    <text x="180" y="113" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="900">&#8377;2,400 Cr</text>
+                    <text x="180" y="113" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="900">$24B</text>
 
                     <!-- SOM label — bottom-left, outside TAM boundary (left edge x=37) -->
                     <!-- leader: from SOM left edge (105-24=81, y=105) → (30,105) → text -->
                     <line x1="81" y1="105" x2="30" y2="105" stroke="rgba(245,158,11,.4)" stroke-width="1" stroke-dasharray="3 2"/>
                     <circle cx="81" cy="105" r="2" fill="#f59e0b"/>
                     <text x="28" y="102" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e" font-weight="700">SOM</text>
-                    <text x="28" y="113" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#f59e0b" font-weight="900">&#8377;156 Cr</text>
+                    <text x="28" y="113" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#f59e0b" font-weight="900">$1.56B</text>
 
-                    <text x="105" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#4b7a5e">Figures in Crores INR &bull; FY28 target</text>
+                    <text x="105" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#4b7a5e">Figures in USD (Global Market) &bull; FY28 target</text>
                 </svg>
                 <div style="margin-top:10px;display:flex;flex-direction:column;gap:7px">
                     <div style="padding:6px 10px;background:rgba(0,255,136,.06);border-radius:5px;border-left:2px solid #00ff88">
@@ -287,7 +286,7 @@
                     <div style="padding:6px 10px;background:rgba(245,158,11,.06);border-radius:5px;border-left:2px solid var(--gold)">
                         <div style="font-size:9.5px;font-weight:700;color:var(--txt3);letter-spacing:.8px;text-transform:uppercase">Cost Advantage</div>
                         <div style="font-size:18px;font-weight:900;color:var(--goldb);line-height:1.1">40&times; Cheaper</div>
-                        <div style="font-size:9.5px;color:var(--txt2)">&#8377;6k&ndash;24k/yr vs Bloomberg &#8377;20L+</div>
+                        <div style="font-size:9.5px;color:var(--txt2)">$6k&ndash;24k/yr vs Bloomberg $2M+</div>
                     </div>
                 </div>
             </div>
@@ -295,7 +294,7 @@
             <!-- Revenue bar chart -->
             <div class="card" style="padding:14px">
                 <div class="card-title">Revenue Trajectory</div>
-                <div style="font-size:9.5px;color:var(--txt3);margin-bottom:8px">Base-case projection (&#8377; Lakhs)</div>
+                <div style="font-size:9.5px;color:var(--txt3);margin-bottom:8px">Base-case projection ($ Millions)</div>
                 <svg width="100%" viewBox="0 0 145 140" xmlns="http://www.w3.org/2000/svg" style="display:block">
                     <defs>
                         <linearGradient id="bg26" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity=".8"/><stop offset="100%" stop-color="#059669" stop-opacity=".4"/></linearGradient>
@@ -308,18 +307,18 @@
                     <line x1="28" y1="42" x2="140" y2="42" stroke="#1e3a28" stroke-width=".5" stroke-dasharray="3 3"/>
                     <line x1="28" y1="5" x2="140" y2="5" stroke="#1e3a28" stroke-width=".5" stroke-dasharray="3 3"/>
                     <text x="24" y="118" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">0</text>
-                    <text x="24" y="81" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">50L</text>
-                    <text x="24" y="45" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">150L</text>
-                    <text x="24" y="9" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">300L</text>
-                    <!-- FY26: height=22 (3.1L proportional) -->
+                    <text x="24" y="81" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">5M</text>
+                    <text x="24" y="45" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">15M</text>
+                    <text x="24" y="9" text-anchor="end" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">30M</text>
+                    <!-- FY26: height=22 (0.31M proportional) -->
                     <rect x="35" y="93" width="26" height="22" rx="3" fill="url(#bg26)"/>
-                    <!-- FY27: height=73 (41.6L proportional) -->
+                    <!-- FY27: height=73 (4.16M proportional) -->
                     <rect x="72" y="42" width="26" height="73" rx="3" fill="url(#bg27)"/>
-                    <!-- FY28: height=110 (271L proportional) -->
+                    <!-- FY28: height=110 (27.1M proportional) -->
                     <rect x="109" y="5" width="26" height="110" rx="3" fill="url(#bg28)"/>
-                    <text x="48" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="800">3.1L</text>
-                    <text x="85" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="800">41.6L</text>
-                    <text x="122" y="17" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#00ff88" font-weight="800">271L</text>
+                    <text x="48" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="800">0.31M</text>
+                    <text x="85" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#10b981" font-weight="800">4.16M</text>
+                    <text x="122" y="17" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#00ff88" font-weight="800">27.1M</text>
                     <rect x="56" y="76" width="36" height="13" rx="3" fill="rgba(16,185,129,.25)"/>
                     <text x="74" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="#10b981" font-weight="800">+1,242%</text>
                     <rect x="93" y="40" width="32" height="13" rx="3" fill="rgba(0,255,136,.2)"/>
@@ -349,11 +348,11 @@
                     </div>
                     <div>
                         <div style="font-size:11px;color:#e8f5e9;font-weight:600;margin-bottom:4px">HFT Desks &middot; Hedge Funds &middot; AIFs &middot; Prop Desks &middot; Family Offices</div>
-                        <div style="font-size:10px;color:var(--txt2)">GIFT IFSC + NSE co-location entry &middot; API monetisation &#8377;0.5/call &middot; Custom ML dashboards &middot; Pilot SLAs &middot; Corporate treasury onboarding</div>
+                        <div style="font-size:10px;color:var(--txt2)">GIFT IFSC + NSE co-location entry &middot; API monetisation $0.5/call &middot; Custom ML dashboards &middot; Pilot SLAs &middot; Corporate treasury onboarding</div>
                     </div>
                     <div style="text-align:right">
                         <div style="font-size:10px;font-weight:700;color:var(--g2)">ACV</div>
-                        <div style="font-size:15px;font-weight:900;color:#fff">&#8377;50K&ndash;50L</div>
+                        <div style="font-size:15px;font-weight:900;color:#fff">$50K&ndash;$5M</div>
                     </div>
                 </div>
 
@@ -370,7 +369,7 @@
                     </div>
                     <div style="text-align:right">
                         <div style="font-size:10px;font-weight:700;color:#38bdf8">ACV</div>
-                        <div style="font-size:15px;font-weight:900;color:#fff">&#8377;20K&ndash;3L</div>
+                        <div style="font-size:15px;font-weight:900;color:#fff">$20K&ndash;$300K</div>
                     </div>
                 </div>
 
@@ -387,7 +386,7 @@
                     </div>
                     <div style="text-align:right">
                         <div style="font-size:10px;font-weight:700;color:#a78bfa">ACV</div>
-                        <div style="font-size:15px;font-weight:900;color:#fff">&#8377;6K&ndash;5L</div>
+                        <div style="font-size:15px;font-weight:900;color:#fff">$6K&ndash;$500K</div>
                     </div>
                 </div>
 
@@ -397,7 +396,7 @@
     </div>
 
     <div class="pf">
-        <span>Confidential &mdash; Team Synapse &middot; IISER Kolkata &middot; iFINN GTM Strategy 2026&ndash;2028</span>
+        <span>Confidential &mdash; Team Synapse &middot; McMaster University &middot; iFINN GTM Strategy 2026&ndash;2028</span>
         <span>Page 1 / 2</span>
     </div>
 </div>
@@ -445,11 +444,8 @@
 
     <!-- HEADER -->
     <div class="ph">
-        <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:24px;height:24px;flex-shrink:0">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="50%" stop-color="#10b981"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs><ellipse cx="24" cy="24" rx="20" ry="14" fill="none" stroke="url(#lg2)" stroke-width="2.5"/><circle cx="24" cy="24" r="8" fill="none" stroke="url(#lg2)" stroke-width="2"/><circle cx="24" cy="24" r="4" fill="url(#lg2)"/><circle cx="8" cy="16" r="2.5" fill="url(#lg2)"/><circle cx="8" cy="32" r="2.5" fill="url(#lg2)"/><circle cx="40" cy="16" r="2.5" fill="url(#lg2)"/><circle cx="40" cy="32" r="2.5" fill="url(#lg2)"/><path d="M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28" stroke="url(#lg2)" stroke-width="1.5" stroke-linecap="round"/><path d="M21 25 L23 23 L25 26 L27 22" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-            <span class="ph-logo">iFINN</span>
+        <div class="ph-brand">
+            <img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo" class="ph-logo-img">
         </div>
         <span class="ph-section">GTM Execution &mdash; Channel Mix, Influencer Strategy &amp; Unit Economics</span>
     </div>
@@ -486,13 +482,13 @@
                     <!-- Callout lines -->
                     <line x1="196" y1="22" x2="308" y2="22" stroke="#1e3a28" stroke-width=".8" stroke-dasharray="3 2"/>
                     <text x="198" y="19" font-family="Inter,sans-serif" font-size="8.5" fill="#fbbf24" font-weight="700">2&ndash;3 partners</text>
-                    <text x="198" y="29" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">&#8377;1L&ndash;5L / post</text>
+                    <text x="198" y="29" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">$100K&ndash;$500K / post</text>
                     <line x1="226" y1="62" x2="308" y2="62" stroke="#1e3a28" stroke-width=".8" stroke-dasharray="3 2"/>
                     <text x="228" y="59" font-family="Inter,sans-serif" font-size="8.5" fill="#10b981" font-weight="700">10&ndash;15 creators</text>
-                    <text x="228" y="69" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">&#8377;15K&ndash;50K / post</text>
+                    <text x="228" y="69" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">$15K&ndash;50K / post</text>
                     <line x1="266" y1="103" x2="308" y2="103" stroke="#1e3a28" stroke-width=".8" stroke-dasharray="3 2"/>
                     <text x="268" y="100" font-family="Inter,sans-serif" font-size="8.5" fill="#00c87a" font-weight="700">50+ creators</text>
-                    <text x="268" y="110" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">&#8377;2K&ndash;5K / post</text>
+                    <text x="268" y="110" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e">$2K&ndash;5K / post</text>
                 </svg>
 
                 <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
@@ -530,14 +526,14 @@
                             <circle cx="54" cy="54" r="44" fill="none" stroke="#f59e0b" stroke-width="22" stroke-dasharray="34.6 276.5" stroke-dashoffset="-173.2"/>
                             <circle cx="54" cy="54" r="29" fill="#0d1f13"/>
                             <text x="54" y="49" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#4b7a5e" font-weight="600">BUDGET</text>
-                            <text x="54" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#10b981" font-weight="900">&#8377;8L</text>
+                            <text x="54" y="63" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#10b981" font-weight="900">$800K</text>
                         </svg>
                         <div style="flex:1">
-                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#10b981;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Digital Ads &amp; Social <span style="color:var(--txt3)">63% &middot; &#8377;5L</span></div></div>
-                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#059669;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Content Marketing <span style="color:var(--txt3)">12% &middot; &#8377;1L</span></div></div>
-                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#00b4d8;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Events &amp; Conf. <span style="color:var(--txt3)">12% &middot; &#8377;1L</span></div></div>
-                            <div style="display:flex;align-items:center;gap:7px"><div style="width:11px;height:11px;border-radius:2px;background:#f59e0b;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">PR &amp; Branding <span style="color:var(--txt3)">13% &middot; &#8377;1L</span></div></div>
-                            <div style="margin-top:7px;padding:4px 8px;background:rgba(16,185,129,.08);border-radius:4px;font-size:9.5px;color:var(--txt2)">FY26: &#8377;0.8L &nbsp;&middot;&nbsp; FY27: &#8377;3.5L &nbsp;&middot;&nbsp; FY28: &#8377;8L</div>
+                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#10b981;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Digital Ads &amp; Social <span style="color:var(--txt3)">63% &middot; $500K</span></div></div>
+                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#059669;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Content Marketing <span style="color:var(--txt3)">12% &middot; $100K</span></div></div>
+                            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px"><div style="width:11px;height:11px;border-radius:2px;background:#00b4d8;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">Events &amp; Conf. <span style="color:var(--txt3)">12% &middot; $100K</span></div></div>
+                            <div style="display:flex;align-items:center;gap:7px"><div style="width:11px;height:11px;border-radius:2px;background:#f59e0b;flex-shrink:0"></div><div style="font-size:10.5px;color:#e8f5e9">PR &amp; Branding <span style="color:var(--txt3)">13% &middot; $100K</span></div></div>
+                            <div style="margin-top:7px;padding:4px 8px;background:rgba(16,185,129,.08);border-radius:4px;font-size:9.5px;color:var(--txt2)">FY26: $80K &nbsp;&middot;&nbsp; FY27: $350K &nbsp;&middot;&nbsp; FY28: $800K</div>
                         </div>
                     </div>
                 </div>
@@ -557,10 +553,10 @@
                         <tbody>
                             <tr><td>New Free Users</td><td class="acc" style="text-align:center">500</td><td class="acc" style="text-align:center">2,000</td><td class="acc" style="text-align:center">7,000</td></tr>
                             <tr><td>Paid Subscribers</td><td style="text-align:center;color:#fff">~20</td><td style="text-align:center;color:#fff">~153</td><td style="text-align:center;color:#fff">~894</td></tr>
-                            <tr><td>Blended ARPU / mo</td><td style="text-align:center;color:var(--txt2)">&#8377;800</td><td style="text-align:center;color:var(--txt2)">&#8377;950</td><td style="text-align:center;color:var(--txt2)">&#8377;1,100</td></tr>
-                            <tr><td>CAC (blended)</td><td style="text-align:center;color:var(--txt2)">&#8377;150</td><td style="text-align:center;color:var(--txt2)">&#8377;120</td><td style="text-align:center;color:var(--txt2)">&#8377;90</td></tr>
+                            <tr><td>Blended ARPU / mo</td><td style="text-align:center;color:var(--txt2)">$800</td><td style="text-align:center;color:var(--txt2)">$950</td><td style="text-align:center;color:var(--txt2)">$1,100</td></tr>
+                            <tr><td>CAC (blended)</td><td style="text-align:center;color:var(--txt2)">$150</td><td style="text-align:center;color:var(--txt2)">$120</td><td style="text-align:center;color:var(--txt2)">$90</td></tr>
                             <tr><td>LTV / CAC Ratio</td><td class="gold" style="text-align:center">~2.5&times;</td><td class="acc" style="text-align:center">~5&times;</td><td style="text-align:center;color:#00ff88;font-weight:700">~9&times;</td></tr>
-                            <tr><td>Total Revenue</td><td class="acc" style="text-align:center">&#8377;1.4L</td><td class="acc" style="text-align:center">&#8377;29.7L</td><td style="text-align:center;color:#00ff88;font-weight:700">&#8377;127.7L</td></tr>
+                            <tr><td>Total Revenue</td><td class="acc" style="text-align:center">$140K</td><td class="acc" style="text-align:center">$2.97M</td><td style="text-align:center;color:#00ff88;font-weight:700">$12.77M</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -574,11 +570,11 @@
             <div class="card card-gl" style="padding:16px">
                 <div class="card-title" style="color:var(--g2)">Competitive GTM Moats</div>
                 <ul class="fl">
-                    <li><strong>Price disruption</strong> &mdash; &#8377;499&ndash;1,999/mo vs Bloomberg &#8377;20L+/yr; 40&times; cost advantage accelerates enterprise trial conversion</li>
+                    <li><strong>Price disruption</strong> &mdash; $499&ndash;1,999/mo vs Bloomberg $2M+/yr; 40&times; cost advantage accelerates enterprise trial conversion</li>
                     <li><strong>SEBI SCORES 2.0 compliant</strong> &mdash; SHAP-based explainability built-in; regulatory moat vs unregistered algo vendors</li>
                     <li><strong>Strategy Marketplace</strong> &mdash; creator economy inside fintech; no competitor offers buy/sell of verified, back-tested strategies</li>
                     <li><strong>NSE / BSE native integration</strong> &mdash; zero broker API re-wiring; frictionless onboarding for retail and institutional clients</li>
-                    <li><strong>IISER Kolkata research pedigree</strong> &mdash; academic credibility shortens institutional sales cycles; cited in SEBI sandbox filings</li>
+                    <li><strong>McMaster University research pedigree</strong> &mdash; academic credibility shortens institutional sales cycles; cited in SEBI sandbox filings</li>
                 </ul>
                 <hr class="div"/>
                 <div class="label-xs" style="margin-bottom:7px">Enterprise Target Segments</div>
@@ -594,10 +590,10 @@
                 <div style="padding:8px 10px;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(0,255,136,.04));border:1px solid rgba(16,185,129,.2);border-radius:6px">
                     <div class="label-xs" style="margin-bottom:4px">Valuation Snapshot (Pre-Revenue)</div>
                     <div style="font-size:10.5px;color:var(--txt2);line-height:1.6">
-                        Berkus <strong style="color:#fff">&#8377;13 Cr</strong> &nbsp;&middot;&nbsp;
-                        VC Method <strong style="color:#fff">&#8377;14 Cr</strong> &nbsp;&middot;&nbsp;
-                        DCF Enterprise Value <strong style="color:#fff">&#8377;13.5 Cr</strong><br>
-                        Pre-Seed target: <strong style="color:#10b981">&#8377;1&#8211;4 Cr (FY27)</strong> &nbsp;&middot;&nbsp; Angel &#8377;15&#8211;50L non-equity (FY26) @ &#8377;13 Cr Berkus cap
+                        Berkus <strong style="color:#fff">$130M</strong> &nbsp;&middot;&nbsp;
+                        VC Method <strong style="color:#fff">$140M</strong> &nbsp;&middot;&nbsp;
+                        DCF Enterprise Value <strong style="color:#fff">$135M</strong><br>
+                        Pre-Seed target: <strong style="color:#10b981">$10M&#8211;$40M (FY27)</strong> &nbsp;&middot;&nbsp; Angel $1.5M&#8211;$5M non-equity (FY26) @ $130M Berkus cap
                     </div>
                 </div>
             </div>
@@ -610,18 +606,18 @@
                         <tr><th>Source</th><th>Key Insight</th><th style="width:90px">Link</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>SEBI Annual Report 2024</td><td>13 Cr+ Demat accounts; 90% F&amp;O retail loss rate</td><td><a href="https://www.sebi.gov.in/reports-and-statistics/annual-reports.html" class="ref" target="_blank">sebi.gov.in</a></td></tr>
-                        <tr><td>IBEF FinTech Report 2024</td><td>India FinTech TAM &#8377;12,000 Cr by FY28</td><td><a href="https://www.ibef.org/industry/fintech" class="ref" target="_blank">ibef.org</a></td></tr>
+                        <tr><td>SEBI Annual Report 2024</td><td>130M+ Demat accounts; 90% F&amp;O retail loss rate</td><td><a href="https://www.sebi.gov.in/reports-and-statistics/annual-reports.html" class="ref" target="_blank">sebi.gov.in</a></td></tr>
+                        <tr><td>IBEF FinTech Report 2024</td><td>Global FinTech TAM $120B by FY28</td><td><a href="https://www.ibef.org/industry/fintech" class="ref" target="_blank">ibef.org</a></td></tr>
                         <tr><td>IFSCA / GIFT City</td><td>HFT &amp; fund management regulatory hub</td><td><a href="https://www.ifsca.gov.in" class="ref" target="_blank">ifsca.gov.in</a></td></tr>
-                        <tr><td>NSE India</td><td>Co-location &amp; market data API access</td><td><a href="https://www.nseindia.com" class="ref" target="_blank">nseindia.com</a></td></tr>
+                        <tr><td>Global Exchanges</td><td>Co-location &amp; market data API access</td><td><a href="https://www.nseindia.com" class="ref" target="_blank">nseindia.com</a></td></tr>
                         <tr><td>QuantInsti</td><td>Quant education community &mdash; marketing channel</td><td><a href="https://www.quantinsti.com" class="ref" target="_blank">quantinsti.com</a></td></tr>
-                        <tr><td>Zerodha Varsity</td><td>Largest free trading education platform in India</td><td><a href="https://zerodha.com/varsity/" class="ref" target="_blank">zerodha.com</a></td></tr>
-                        <tr><td>Bloomberg Terminal</td><td>Competitive benchmark at &#8377;20L+/yr</td><td><a href="https://www.bloomberg.com/professional/solution/bloomberg-terminal/" class="ref" target="_blank">bloomberg.com</a></td></tr>
+                        <tr><td>Zerodha Varsity</td><td>Largest free trading education platform globally</td><td><a href="https://zerodha.com/varsity/" class="ref" target="_blank">zerodha.com</a></td></tr>
+                        <tr><td>Bloomberg Terminal</td><td>Competitive benchmark at $2M+/yr</td><td><a href="https://www.bloomberg.com/professional/solution/bloomberg-terminal/" class="ref" target="_blank">bloomberg.com</a></td></tr>
                         <tr><td>MeitY Startup Hub</td><td>Government partner &amp; accelerator validation</td><td><a href="https://msins.in" class="ref" target="_blank">msins.in</a></td></tr>
                     </tbody>
                 </table>
 
-                <div class="label-xs" style="margin-bottom:7px">Revenue Mix &mdash; FY28 (~&#8377;128L &#x2248; &#8377;1.3 Cr)</div>
+                <div class="label-xs" style="margin-bottom:7px">Revenue Mix &mdash; FY28 (~$12.8M &#x2248; $13M)</div>
                 <div style="display:flex;flex-direction:column;gap:4px">
                     <div style="display:flex;align-items:center;gap:8px">
                         <div style="width:85px;font-size:10px;color:var(--txt2);flex-shrink:0">Subscriptions</div>
@@ -655,7 +651,7 @@
     </div>
 
     <div class="pf">
-        <span>Confidential &mdash; Team Synapse &middot; IISER Kolkata &middot; iFINN GTM Strategy 2026&ndash;2028</span>
+        <span>Confidential &mdash; Team Synapse &middot; McMaster University &middot; iFINN GTM Strategy 2026&ndash;2028</span>
         <span>Page 2 / 2</span>
     </div>
 </div>

@@ -114,26 +114,17 @@
         }
 
         .logo {
-            font-size: var(--font-h2);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
         }
 
-        .logo::before {
-            content: '';
-            display: inline-block;
-            width: 24px;
+        .logo img {
             height: 24px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Eye outline with neural network nodes --%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g1)' stroke-width='2.5'/%3E%3C!-- Iris --%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g1)' stroke-width='2'/%3E%3C!-- Pupil with chart symbol --%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g1)'/%3E%3C!-- Neural nodes around eye --%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g1)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g1)'/%3E%3C!-- Neural connections --%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g1)' stroke-width='1.5' stroke-linecap='round'/%3E%3C!-- Chart line inside pupil --%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
+            width: auto;
+            display: block;
+            border-radius: 4px;
+            background: #ffffff;
+            padding: 2px;
         }
 
         .slide-title {
@@ -183,28 +174,19 @@
         }
 
         .title-slide .main-logo {
-            font-size: var(--font-title);
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: var(--space-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
         }
 
-        .title-slide .main-logo::before {
-            content: '';
-            display: inline-block;
-            width: 48px;
-            height: 48px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2300ff88'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='24' cy='24' rx='20' ry='14' fill='none' stroke='url(%23g2)' stroke-width='2.5'/%3E%3Ccircle cx='24' cy='24' r='8' fill='none' stroke='url(%23g2)' stroke-width='2'/%3E%3Ccircle cx='24' cy='24' r='4' fill='url(%23g2)'/%3E%3Ccircle cx='8' cy='16' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='8' cy='32' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='40' cy='16' r='2.5' fill='url(%23g2)'/%3E%3Ccircle cx='40' cy='32' r='2.5' fill='url(%23g2)'/%3E%3Cpath d='M10 16 L16 20 M10 32 L16 28 M38 16 L32 20 M38 32 L32 28' stroke='url(%23g2)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M21 25 L23 23 L25 26 L27 22' stroke='%23fff' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
+        .title-slide .main-logo img {
+            height: 72px;
+            width: auto;
+            display: block;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 4px;
         }
 
         .title-slide .tagline {
@@ -251,6 +233,14 @@
             bottom: var(--margin-safe);
             font-size: var(--font-body);
             color: var(--text-muted);
+        }
+
+        .university-name {
+            font-size: var(--font-h2);
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.2px;
+            margin-bottom: var(--space-sm);
         }
 
         /* Section Header */
@@ -800,7 +790,8 @@
 <!-- SLIDE 1: Title -->
 <div class="slide">
     <div class="slide-body title-slide">
-        <div class="main-logo">iFiNN</div>
+        <div class="main-logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></div>
+        <div class="university-name">McMaster University</div>
         <div class="tagline">
             Enterprise-Grade Financial Analytics &amp; Machine Learning Platform
         </div>
@@ -823,7 +814,7 @@
             </div>
         </div>
         <div class="title-footer">
-            iFiNN-IISERK &nbsp;|&nbsp; Seed Round &nbsp;|&nbsp; January 2026
+            iFiNN &nbsp;|&nbsp; Seed Round &nbsp;|&nbsp; January 2026
         </div>
     </div>
 </div>
@@ -831,7 +822,7 @@
 <!-- SLIDE 2: Problem & Solution -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Market Opportunity</span>
     </div>
     <div class="slide-body">
@@ -897,7 +888,7 @@
 <!-- SLIDE 3: Platform Capabilities -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Platform Overview</span>
     </div>
     <div class="slide-body">
@@ -971,7 +962,7 @@
 <!-- SLIDE 4: Multi-Market Support -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Market Coverage</span>
     </div>
     <div class="slide-body">
@@ -1053,7 +1044,7 @@
 <!-- SLIDE 5: ML Pipeline -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Machine Learning</span>
     </div>
     <div class="slide-body">
@@ -1138,7 +1129,7 @@
 <!-- SLIDE 6: Architecture -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Technical Architecture</span>
     </div>
     <div class="slide-body">
@@ -1218,7 +1209,7 @@
 <!-- SLIDE 7: Semantic News Analysis -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Semantic News Analysis</span>
     </div>
     <div class="slide-body">
@@ -1288,7 +1279,7 @@
 <!-- SLIDE 8: Backtesting -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Backtesting Engine</span>
     </div>
     <div class="slide-body">
@@ -1393,7 +1384,7 @@
 <!-- SLIDE 9: Competitive Analysis -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Competitive Landscape</span>
     </div>
     <div class="slide-body">
@@ -1491,7 +1482,7 @@
 <!-- SLIDE 10: Business Model -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Business Model</span>
     </div>
     <div class="slide-body">
@@ -1585,7 +1576,7 @@
 <!-- SLIDE 11: Roadmap -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Product Roadmap</span>
     </div>
     <div class="slide-body">
@@ -1661,7 +1652,7 @@
 <!-- SLIDE 12: Investment -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Investment Opportunity</span>
     </div>
     <div class="slide-body">
@@ -1743,7 +1734,7 @@
 <!-- SLIDE 13: Hidden Revenue Stream -->
 <div class="slide">
     <div class="slide-header">
-        <span class="logo">iFiNN</span>
+        <span class="logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></span>
         <span class="slide-title">Our Hidden Revenue Stream</span>
     </div>
     <div class="slide-body">
@@ -1823,7 +1814,7 @@
 <!-- SLIDE 14: Contact -->
 <div class="slide">
     <div class="slide-body title-slide">
-        <div class="main-logo">iFiNN</div>
+        <div class="main-logo"><img src="../assets/logos/forge_mcmaster_logo.jpeg" alt="The Forge McMaster logo"></div>
         <div class="tagline mb-xl">
             The Future of Financial Analytics
         </div>
@@ -1848,7 +1839,7 @@
 
         <div style="text-align: center;" class="mb-lg">
             <div class="contact-info mb-md">
-                team@ifinn-analytics.io | www.ifinn-analytics.io | github.com/iFiNN-iiserk
+                team@ifinn-analytics.io | www.ifinn-analytics.io
             </div>
             <div class="cta-button">
                 Schedule a Demo
@@ -1856,7 +1847,7 @@
         </div>
 
         <div class="contact-footer">
-            iFiNN-IISERK | January 2026 | Confidential
+            iFiNN | January 2026 | Confidential
         </div>
     </div>
 </div>
